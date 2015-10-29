@@ -7,7 +7,7 @@ package easymarket.model.pojo;
 
 /**
  *
- * @author Nathalia
+ * @author Equipe F5
  */
 public class Filial {
     

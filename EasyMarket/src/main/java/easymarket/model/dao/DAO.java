@@ -11,15 +11,15 @@ import java.sql.SQLException;
 
 /**
  *
- * @author nathalia.lsilva2
+ * @author Equipe F5
  */
 
 //classe do prof que conecta com o banco de dados
 //https://github.com/ftsuda82/IntegracaoJBDC/blob/master/src/main/java/br/senac/tads/pi3/ftsuda/integracaojdbc/ContatosApp.java
 
-public class DBConnect {
+public class DAO {
 
-    private Connection obterConexao() throws SQLException, ClassNotFoundException {
+    public Connection obterConexao() throws SQLException, ClassNotFoundException {
         Connection conn = null;
         // Passo 1: Registrar driver JDBC.
         Class.forName("org.apache.derby.jdbc.ClientDataSource");

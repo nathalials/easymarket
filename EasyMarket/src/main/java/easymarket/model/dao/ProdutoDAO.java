@@ -7,8 +7,8 @@ package easymarket.model.dao;
 
 /**
  *
- * @author Nathalia
+ * @author Equipe F5
  */
-public class ProdutoDAO {
+public class ProdutoDAO extends DAO {
     
 }

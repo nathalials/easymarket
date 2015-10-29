@@ -9,7 +9,7 @@ import java.util.Date;
 
 /**
  *
- * @author Nathalia
+ * @author Equipe F5
  */
 public class Produto {
     

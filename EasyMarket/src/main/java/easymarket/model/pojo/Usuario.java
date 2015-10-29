@@ -7,7 +7,7 @@ package easymarket.model.pojo;
 
 /**
  *
- * @author Nathalia
+ * @author Equipe F5
  */
 public class Usuario {
     
@@ -16,12 +16,11 @@ public class Usuario {
     private String login;
     private String senha;
     private String email;
-    private long cpf;
+    private String cpf;
     private String cargo;
     
     
-    public Usuario(String idUsuario, String nome, String login, String senha, String email, long cpf, String cargo){
-        this.idUsuario = idUsuario;
+    public Usuario(String nome, String login, String senha, String email, String cpf, String cargo){
         this.nome = nome;
         this.login = login;
         this.senha = senha;
@@ -104,14 +103,14 @@ public class Usuario {
     /**
      * @return the cpf
      */
-    public long getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
     /**
      * @param cpf the cpf to set
      */
-    public void setCpf(long cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 

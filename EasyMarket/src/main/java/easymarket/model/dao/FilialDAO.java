@@ -7,8 +7,8 @@ package easymarket.model.dao;
 
 /**
  *
- * @author Nathalia
+ * @author Equipe F5
  */
-public class FilialDAO {
+public class FilialDAO extends DAO {
     
 }
