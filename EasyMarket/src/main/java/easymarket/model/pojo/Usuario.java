@@ -18,16 +18,17 @@ public class Usuario {
     private String email;
     private String cpf;
     private String cargo;
+    private String ativo;
     
     
-    public Usuario(String nome, String login, String senha, String email, String cpf, String cargo){
+    public Usuario(String nome, String login, String senha, String email, String cpf, String cargo,String ativo){
         this.nome = nome;
         this.login = login;
         this.senha = senha;
         this.email = email;
         this.cpf = cpf;
         this.cargo = cargo;
-        
+        this.ativo = ativo;
         
     }
     /**
@@ -128,6 +129,12 @@ public class Usuario {
         this.cargo = cargo;
     }
 
+    public String getAtivo(){
+        return ativo;
+    }
     
+    public void  setAtivo(String _ativo){
+        this.ativo = _ativo;
+    }
     
 }
