@@ -1,98 +1,80 @@
-<html lang="en">
+<html>
     <head>
-        <meta charset="utf-8">
-        <title>Easy Market</title>
-        <link rel="stylesheet" href="jquery-ui.css">
-        <script src="jquery-1.10.2.js"></script>
-        <script src="jquery-ui.js"></script>
-        <link rel="stylesheet" href="style.css">
-        <script>
-            $(function () {
-                $("#tabs").tabs();
-            });
-        </script>
+        <title>EasyMarket</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <link rel="stylesheet" type="text/css" href="estilo.css">
+        <script language="JavaScript" src="jquery.js"></script>	
     </head>
+
     <body>
-        <div id="principal">
-            <div id="titulo">Easy Market</div>
-            <div id="usuario">Usuário XXX</div>
-            <div id="carrinho"><img src="carrinhoDeCompras.png" id="img_carrinho"></div>
-            <div id="tabs">
 
-                <ul>
-                    <li><a href="#tabs-1">Usuários</a></li>
-                    <li><a href="#tabs-2">Filiais</a></li>
-                    <li><a href="#tabs-3">Produtos</a></li>
-                    <li><a href="#tabs-4">Vendas</a></li>
-                    <li><a href="#tabs-5">Estoque</a></li>
-                </ul>
+        <div id="aba">
+            <label id="logo_easymarket">EasyMarket</label>
+            <img id="img_carrinho" src="carrinhoDeCompras.png"></img>
+            <div id="aba1" class="sel" onClick="sel(this.id)">Usuários</div>
+            <div id="aba2" class="unsel" onClick="sel(this.id)">Filiais</div>
+            <div id="aba3" class="unsel" onClick="sel(this.id)">Produtos</div>
+            <div id="aba4" class="unsel" onClick="sel(this.id)">Vendas</div>
+            <div id="aba5" class="unsel" onClick="sel(this.id)">Estoque</div>
+            <div id="aba6" class="unsel" onClick="sel(this.id)">Relatório</div>
+        </div>
 
-                <!-- Usuários -->
-                <form method="post" action="CadastrarUsuario"> <div id="tabs-1" class="menus">
+        <!-- Aba usuario -->
+        <div id="textaba1" class="divsel">
+            <form action="">
+                <table  id="t_usuario">
+                    <tr><td>Nome</td><td><input type="text" id="user_nome"><br></td></tr>
+                    <tr><td>Login<td><input type="text" id="user_login"><br></td></tr>
+                    <tr><td>Senha</td><td><input type="text" id="user_senha"><br></td></tr>
+                    <tr><td>Email</td><td><input type="text" id="user_email"><br></td></tr>
+                    <tr><td>CPF</td><td><input type="text" id="user_cpf"><br></td></tr>
+                    <tr><td>Cargo</td><td><input type="text" id="user_cargo"><br></td></tr>
+                    <tr><td>Status</td><td><input type="text" id="user_status"><br></td></tr>
+                    <tr></tr>
+                    <tr><td></td><td><input type="submit" value="Enviar" id="user_enviar"></td></tr>
+                </table>
+            </form>
+        </div>
 
-                        <div id="esquerdaProdutos">
-                            <label class="fonteslabel">Nome</label><br>
-                            <input type="text" name="nome" value=""><br>
-                            <label class="fonteslabel">Login</label><br>
-                            <input type="text" name="login" value=""><br>
-                            <label class="fonteslabel">Senha</label><br>
-                            <input type="text" name="senha" value=""><br>
-                            <label class="fonteslabel">E-mail</label><br>
-                            <input type="text" name="email" value=""><br>
-                            <label class="fonteslabel">CPF</label><br>
-                            <input type="text" name="cpf" value=""><br>
-                            <label class="fonteslabel">Cargo</label><br>
-                            <input type="text" name="cargo" value=""><br>
-                            <input type="submit" value="Enviar" />
-                            </form>
-
-                            <!-- Filiais -->
-                            <div id="tabs-2" class="menus">
-                                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-                            </div>
-
-                            <!-- Produtos -->
-
-                            <form method="post" action=""> <div id="tabs-3" class="menus">
-
-                                    <div id="esquerdaProdutos">
-                                        <label class="fonteslabel">Nome</label><br>
-                                        <input type="text" name="nome" value=""><br>
-                                        <label class="fonteslabel">Marca</label><br>
-                                        <input type="text" name="marca" value=""><br>
-                                        <label class="fonteslabel">Fornecedor</label><br>
-                                        <input type="text" name="fornecedor" value=""><br>
-                                        <label class="fonteslabel">Código de Barras</label><br>
-                                        <input type="text" name="cod_barras" value=""><br>
-                                        <label class="fonteslabel">Lote</label><br>
-                                        <input type="text" name="lote" value=""><br>
-                                        <label>Status</label><br>
-                                        <input type="radio" name="status" value="ativado">
-                                        <label>Ativado</label>
-                                        <input type="radio" name="status" value="desativado"> 
-                                        <label>Desativado</label><br>
-
-                                    </div>
-                                    <div id="direitaProdutos">
-                                        <label class="fonteslabel">Setor</label>
-                                        <select id="setor">
-                                            <option value="Alimentos">Alimentos</option>
-                                            <option value="Alimentos">Alimentos</option>
-                                        </select>
-                                        <input type="submit" value="Enviar" />
-                                    </div>
-
-                            </form>
-                            <!-- Vendas -->
-                            <div id="tabs-4" class="menus">
-                                <p>Proin elit arcu, rutrum commodo, vehicula tempus, commodo a, risus. Curabitur nec arcu. Donec sollicitudin mi sit amet mauris. Nam elementum quam ullamcorper ante. Etiam aliquet massa et lorem. Mauris dapibus lacus auctor risus. Aenean tempor ullamcorper leo. Vivamus sed magna quis ligula eleifend adipiscing. Duis orci. Aliquam sodales tortor vitae ipsum. Aliquam nulla. Duis aliquam molestie erat. Ut et mauris vel pede varius sollicitudin. Sed ut dolor nec orci tincidunt interdum. Phasellus ipsum. Nunc tristique tempus lectus.</p>
-                            </div>
-
-                            <!-- Estoque -->
-                            <div id="tabs-5" class="menus">
-                                <p>Morbi tincidunt, dui sit amet facilisis feugiat, odio metus gravida ante, ut pharetra massa metus id nunc. Duis scelerisque molestie turpis. Sed fringilla, massa eget luctus malesuada, metus eros molestie lectus, ut tempus eros massa ut dolor. Aenean aliquet fringilla sem. Suspendisse sed ligula in ligula suscipit aliquam. Praesent in eros vestibulum mi adipiscing adipiscing. Morbi facilisis. Curabitur ornare consequat nunc. Aenean vel metus. Ut posuere viverra nulla. Aliquam erat volutpat. Pellentesque convallis. Maecenas feugiat, tellus pellentesque pretium posuere, felis lorem euismod felis, eu ornare leo nisi vel felis. Mauris consectetur tortor et purus.</p>
-                            </div>
-                        </div>
-                    </div>
-                    </body>
-                    </html>
+        <div id="textaba2" class="divunsel">Conteúdo da aba2 aqui</div>
+        
+        <!-- Aba produtos -->
+        <div id="textaba3" class="divunsel">
+             <table  id="t_produto">
+                    <tr>
+                        <td>Nome</td><td><input type="text" id="produto_nome"><br></td>
+                        <td>Preço Compra</td><td><input type="text" id="produto_compra"><br></td>
+                    </tr>   
+                    <tr>
+                        <td>Marca<td><input type="text" id="produto_marca"><br></td>
+                        <td>Preço Venda</td><td><input type="text" id="produto_venda"><br></td>
+                    </tr> 
+                    <tr>
+                        <td>Fornecedor</td><td><input type="text" id="produto_fornecedor"><br></td>
+                        <td>Estoque Mínimo</td><td><input type="text" id="produto_minimo"><br></td>
+                    </tr>
+                    <tr>
+                        <td>Código de Barras</td><td><input type="text" id="produto_cod"><br></td>
+                        <td>Estoque máximo</td><td><input type="text" id="produto_maximo"><br></td>
+                    </tr> 
+                    <tr>
+                        <td>Lote</td><td><input type="text" id="produto_lote"><br></td>
+                        <td>Quantidade Atual</td><td><input type="text" id="produto_qtdAtual"><br></td>
+                    </tr>
+                    <tr>
+                        <td>Data de validade</td><td><input type="text" id="produto_validade"><br></td>
+                        <td>Status</td><td><input type="text" id="produto_status"><br></td>
+                    </tr>
+                    <tr>
+                        <td>Setor</td><td><input type="text" id="produto_setor"><br></td>
+                    </tr>
+                    <tr></tr>
+                    <tr><td></td><td><input type="submit" value="Enviar" id="produto_enviar"></td>
+                    </tr>
+                </table>        
+        </div>
+        <div id="textaba4" class="divunsel">Conteúdo da aba4 aqui</div>
+        <div id="textaba5" class="divunsel">Conteúdo da aba5 aqui</div>
+        <div id="textaba6" class="divunsel">Conteúdo da aba6 aqui</div>
+    </body>
+</html>
