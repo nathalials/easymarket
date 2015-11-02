@@ -43,9 +43,6 @@
                 </table>
             </form>
             
-            
-            <input type="button" onclick="alerta()" value="exibirAlert" />
-            
         </div>
 
         <div id="textaba2" class="divunsel">Conteúdo da aba2 aqui</div>
