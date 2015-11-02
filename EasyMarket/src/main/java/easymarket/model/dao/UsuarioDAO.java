@@ -26,7 +26,7 @@ public class UsuarioDAO extends DAO {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "INSERT INTO TB_USUARIO (NM_USUARIO, LG_USUARIO, PW_USUARIO, EMAIL, CPF, CARGO) VALUES (?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_USUARIO (NM_USUARIO,  LG_USUARIO, PS_USUARIO, EMAIL, CPF, CARGO, ATIVO) VALUES (?, ?, ?, ?, ?, ?, ?)";
         try {
 
             conn = obterConexao();
@@ -37,8 +37,9 @@ public class UsuarioDAO extends DAO {
             stmt.setString(4, usuario.getEmail());
             stmt.setString(5, usuario.getCpf());
             stmt.setString(6, usuario.getCargo());
+            stmt.setString(7, usuario.getAtivo());
 
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {

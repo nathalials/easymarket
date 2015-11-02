@@ -5,10 +5,13 @@
  */
 package easymarket.controller;
 
+import easymarket.model.dao.DAO;
 import easymarket.model.dao.UsuarioDAO;
 import easymarket.model.pojo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -74,24 +77,25 @@ public class CadastrarUsuario extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      
 
-        String nome = request.getParameter("nome");
-        String login = request.getParameter("login");
-        String senha = request.getParameter("senha");
-        String email = request.getParameter("email");
-        String cpf = request.getParameter("cpf");
-        String cargo = request.getParameter("cargo");
+        String nome = request.getParameter("user_nome");
+        String login = request.getParameter("user_login");
+        String senha = request.getParameter("user_senha");
+        String email = request.getParameter("user_email");
+        String cpf = request.getParameter("user_cpf");
+        String cargo = request.getParameter("user_cargo");
+        String ativo = request.getParameter("user_status");
 
-        Usuario usuario = new Usuario(nome, login, senha, email, cpf, cargo, "s");
+        response.setContentType("text/html");
+        PrintWriter out = response.getWriter();
+        
+        Usuario usuario = new Usuario(nome, login, senha, email, cpf, cargo, ativo);
         UsuarioDAO novoUsuario = new UsuarioDAO();
         novoUsuario.incluirUsuario(usuario);
+        out.print(nome + "nome esta aqui");
+        out.println("<h3>Registro cadastrado com sucesso!!<h3>");
         
-    PrintWriter out = response.getWriter(); out.println("Bem Vindo<h3>"+nome+"</h3>"); out.close();
-
-
-        
-
+        out.close();
         //processRequest(request, response);
     }
 
@@ -104,5 +108,4 @@ public class CadastrarUsuario extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
-
 }

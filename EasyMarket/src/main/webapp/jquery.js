@@ -13,3 +13,7 @@ function sel(idaba){
     var iddiv="text"+idaba;
     document.getElementById(iddiv).className="divsel";
     }
+    
+function alerta(){
+   alert("Cadastrado com sucesso!!"); 
+}
