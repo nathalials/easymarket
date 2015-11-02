@@ -1,0 +1,113 @@
+<!--
+body{
+    width: 100%;
+    margin:auto;
+}
+.unsel {
+    font-style: normal;
+    width:12.67%;
+    display:inline-block;
+    background-color: #FFFFFF;
+    border-radius: 5px;
+    text-align:center;
+    position:relative;
+    top:8.5%;
+    right:1%;
+}
+
+
+.sel {
+    background-color: #DCDCDC;
+    width:23.5%;
+    display:inline-block;
+    border-radius: 5px;
+    text-align:center;
+    position:relative;
+    top:8.5%;
+    right:1%;
+
+}
+
+.divsel {
+    visibility: visible;
+    position: fixed;
+    left: 18.2%; /*distância do conteúdo em relação à esquerda do browser*/
+    top: 25%; /*distância do conteúdo em relação ao topo*/
+    height: 45%;/*altura do conteúdo*/
+    width: 60.5%;/*largura do conteúdo*/
+    background-color: #FFFFFF;/*cor de fundo do conteúdo*/
+    right: 8%;
+    border-radius: 20px;
+    padding: 20px 10px 10px 10px;
+}
+
+.divunsel {
+    visibility: hidden;
+    position:fixed;
+    padding: 20px 0px 10px 0px;
+}
+
+#aba{
+    position: fixed;
+    left: 18%;   
+    top: 8%;
+    width: 62%; 
+    height: 62.5%; 
+    border-radius: 20px;
+    border: solid #191970;
+    padding: 15px 0px 10px 0px;
+    background:#191970;
+}
+
+#logo_easymarket{
+    position:fixed;
+    width:50px;
+    height:50px;
+    left:45%;
+    top:15%;
+    color:#FFFFFF;
+    font-size:25px;
+}
+
+#img_carrinho{
+    position:relative;
+    width:50px;
+    height:50px;
+    left:7%;
+    top:3%;	
+}
+
+#t_usuario{
+    position:fixed;
+    left:32%;
+    top:30%;
+    width:45%;
+    height: 35%;
+    border:0;
+    align:center;
+    cellspacing:0;
+}
+
+#user_enviar{
+       position:fixed;
+       left:60%;
+}
+
+#produto_enviar{
+       position:fixed;
+       left:70%;
+       top:65%;
+}
+
+#t_produto{
+    position:fixed;
+    left:22%;
+    top:30%;
+    width:60%;
+    height: 35%;
+    border:0;
+    align:center;
+    cellspacing:0;
+}
+
+-->
