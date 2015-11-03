@@ -11,7 +11,7 @@ package easymarket.model.pojo;
  */
 public class Usuario {
     
-    private String idUsuario;
+    private int idUsuario;
     private String nome;
     private String login;
     private String senha;
@@ -19,6 +19,10 @@ public class Usuario {
     private String cpf;
     private String cargo;
     private String ativo;
+    
+    public Usuario(){
+        
+    }
     
     
     public Usuario(String nome, String login, String senha, String email, String cpf, String cargo,String ativo){
@@ -34,14 +38,14 @@ public class Usuario {
     /**
      * @return the idUsuario
      */
-    public String getIdUsuario() {
+    public int getIdUsuario() {
         return idUsuario;
     }
 
     /**
      * @param idUsuario the idUsuario to set
      */
-    public void setIdUsuario(String idUsuario) {
+    public void setIdUsuario(int idUsuario) {
         this.idUsuario = idUsuario;
     }
 

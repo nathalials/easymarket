@@ -8,7 +8,11 @@ package easymarket.model.dao;
 import easymarket.model.pojo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,9 +22,9 @@ import java.util.logging.Logger;
  */
 public class UsuarioDAO extends DAO {
     /*    
-    INSERT INTO TB_USUARIO (NM_USUARIO, LG_USUARIO, PS_USUARIO, EMAIL, CPF, CARGO) VALUES ('JOÃO', 'JOAO', '1234','joao_vidaloka@ig.com.br' ,'123456789', 'CAIXA')
-    */
-    
+     INSERT INTO TB_USUARIO (NM_USUARIO, LG_USUARIO, PS_USUARIO, EMAIL, CPF, CARGO) VALUES ('JOÃO', 'JOAO', '1234','joao_vidaloka@ig.com.br' ,'123456789', 'CAIXA')
+     */
+
     public void incluirUsuario(Usuario usuario) {
 
         PreparedStatement stmt = null;
@@ -63,7 +67,7 @@ public class UsuarioDAO extends DAO {
             }
         }
     }
-    
+
     public void AlterarUsuario(Usuario usuario) {
 
         PreparedStatement stmt = null;
@@ -80,7 +84,7 @@ public class UsuarioDAO extends DAO {
             stmt.setString(4, usuario.getEmail());
             stmt.setString(5, usuario.getCpf());
             stmt.setString(6, usuario.getCargo());
-            stmt.setString(7, usuario.getIdUsuario());
+            stmt.setInt(7, usuario.getIdUsuario());
 
             stmt.executeUpdate(sql);
             System.out.println("Registro incluido com sucesso.");
@@ -118,8 +122,8 @@ public class UsuarioDAO extends DAO {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, usuario.getAtivo());
-            stmt.setString(2, usuario.getIdUsuario());
-            
+            stmt.setInt(2, usuario.getIdUsuario());
+
             stmt.executeUpdate(sql);
             //System.out.println("Registro incluido com sucesso.");
 
@@ -143,5 +147,41 @@ public class UsuarioDAO extends DAO {
                 }
             }
         }
+    }
+
+    public List<Usuario> getLista() throws SQLException {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM TB_USUARIO";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        while (rs.next()) {
+            //Criando um objeto tipo Contato  
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(rs.getInt("ID_USUARIO"));
+            usuario.setNome(rs.getString("NM_USUARIO"));
+            usuario.setLogin(rs.getString("LG_USUARIO"));
+            usuario.setSenha(rs.getString("PS_USUARIO"));;
+            usuario.setEmail(rs.getString("EMAIL"));
+            usuario.setCpf(rs.getString("CPF"));
+            usuario.setCargo(rs.getString("CARGO"));
+            usuario.setAtivo(rs.getString("ATIVO"));
+
+            //Adicionando Valores a lista  
+            usuarios.add(usuario);
+        }
+        rs.close();
+        stmt.close();
+        return usuarios;
     }
 }
