@@ -68,25 +68,28 @@ public class UsuarioDAO extends DAO {
         }
     }
 
-    public void AlterarUsuario(Usuario usuario) {
+    public void AlterarUsuario(String nome, String login, String senha, String email, String cpf, String cargo, String ativo, int IdUsuario) {
 
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_USUARIO SET NMUSUARIO=?, LG_USUARIO=?,PS_USUARIO=?,EMAIL=?,CPF=?,CARGO=? WHERE ID_USUARIO=?";
+        String sql = "UPDATE TB_USUARIO SET NM_USUARIO=?, LG_USUARIO=?,PS_USUARIO=?,EMAIL=?,CPF=?,CARGO=?,ATIVO=? WHERE ID_USUARIO=?";
         try {
+            
+            
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getLogin());
-            stmt.setString(3, usuario.getSenha());
-            stmt.setString(4, usuario.getEmail());
-            stmt.setString(5, usuario.getCpf());
-            stmt.setString(6, usuario.getCargo());
-            stmt.setInt(7, usuario.getIdUsuario());
+            stmt.setString(1, nome);
+            stmt.setString(2, login);
+            stmt.setString(3, senha);
+            stmt.setString(4, email);
+            stmt.setString(5, cpf);
+            stmt.setString(6, cargo);
+            stmt.setString(7, ativo);
+            stmt.setInt(8, IdUsuario);
 
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {

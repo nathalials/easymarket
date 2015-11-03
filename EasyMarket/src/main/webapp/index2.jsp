@@ -27,7 +27,7 @@
 					key : true,
 					list : true,
 					edit : false,
-					create : true
+					create : false
 				},
 				nome : {
 					title : 'Nome',
@@ -41,6 +41,27 @@
 				},
 				senha : {
 					title : 'Senha',
+					width : '20%',
+					edit : true,
+                                        display : false
+				},
+                                email : {
+					title : 'E-mail',
+					width : '20%',
+					edit : true
+				},
+                                cpf : {
+					title : 'CPF',
+					width : '20%',
+					edit : true
+				},
+                                cargo : {
+					title : 'Cargo',
+					width : '20%',
+					edit : true
+				},
+                                ativo : {
+					title : 'Status',
 					width : '20%',
 					edit : true
 				}

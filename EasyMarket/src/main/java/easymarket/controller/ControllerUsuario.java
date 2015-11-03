@@ -5,7 +5,6 @@
  */
 package easymarket.controller;
 
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,118 +15,101 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import easymarket.model.dao.UsuarioDAO;
 import easymarket.model.pojo.Usuario;
+import java.io.PrintWriter;
 import javax.servlet.annotation.WebServlet;
 
 @WebServlet(urlPatterns = "/ControllerUsuario")
 public class ControllerUsuario extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-	private HashMap<String, Object> JSONROOT = new HashMap<String, Object>();
-        
-        private UsuarioDAO dao;
 
+    private static final long serialVersionUID = 1L;
+    private HashMap<String, Object> JSONROOT = new HashMap<String, Object>();
 
-	protected void doGet(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
-		doPost(request, response);
-	}
+    private UsuarioDAO dao;
 
-	protected void doPost(HttpServletRequest request,
-			HttpServletResponse response) throws ServletException, IOException {
+    protected void doGet(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
+        doPost(request, response);
+    }
 
-		String action = request.getParameter("action");
-		List<Usuario> listaUsuarios = new ArrayList<Usuario>();
-		Gson gson = new GsonBuilder().setPrettyPrinting().create();
-		response.setContentType("application/json");
-                UsuarioDAO usuarioDao = new UsuarioDAO();
-                
+    protected void doPost(HttpServletRequest request,
+            HttpServletResponse response) throws ServletException, IOException {
 
-		if (action != null) {
-			try {
-				if (action.equals("list")) {
-                                   listaUsuarios = usuarioDao.getLista();
-					// Fetch Data from Student Table
-					//listaUsuarios = dao.listarUsuarios();
-//                                    Usuario usuario1 = new Usuario ("nome1", "login", "senha", "email", "cpf", "cargo", "ativo");
-//                                    Usuario usuario2 = new Usuario ("nome2", "login", "senha", "email", "cpf", "cargo", "ativo");
-//                                    Usuario usuario3 = new Usuario ("nome3", "login", "senha", "email", "cpf", "cargo", "ativo");
-//                                    Usuario usuario4 = new Usuario ("nome4", "login", "senha", "email", "cpf", "cargo", "ativo");
-//                                    Usuario usuario5 = new Usuario ("nome5", "login", "senha", "email", "cpf", "cargo", "ativo");
-//                                    listaUsuarios.add(usuario1);
-//                                    listaUsuarios.add(usuario2);
-//                                    listaUsuarios.add(usuario3);
-//                                    listaUsuarios.add(usuario4);
-//                                    listaUsuarios.add(usuario5);
-                                    
-					// Return in the format required by jTable plugin
-					JSONROOT.put("Result", "OK");
-					JSONROOT.put("Records", listaUsuarios);
+        String action = request.getParameter("action");
+        List<Usuario> listaUsuarios = new ArrayList<Usuario>();
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        response.setContentType("application/json");
+        UsuarioDAO usuarioDao = new UsuarioDAO();
 
-					// Convert Java Object to Json
-					String jsonArray = gson.toJson(JSONROOT);
+        if (action != null) {
+            try {
+                if (action.equals("list")) {
 
-					response.getWriter().print(jsonArray);
-				} else if (action.equals("create") || action.equals("update")) {
-					Usuario usuario = new Usuario();
-					if (request.getParameter("idUsuario") != null) {
-						int usuarioId = Integer.parseInt(request.getParameter("idUsuario"));
-						usuario.setIdUsuario(usuarioId);
-					}
+                    listaUsuarios = usuarioDao.getLista();
 
-					if (request.getParameter("nome") != null) {
-						String nome = request.getParameter("nome");
-						usuario.setNome(nome);
-					}
+                    JSONROOT.put("Result", "OK");
+                    JSONROOT.put("Records", listaUsuarios);
 
-					if (request.getParameter("login") != null) {
-						String login = request.getParameter("login");
-						usuario.setLogin(login);
-					}
+                    // Convert Java Object to Json
+                    String jsonArray = gson.toJson(JSONROOT);
 
-					if (request.getParameter("senha") != null) {
-						String senha = request.getParameter("senha");
-						usuario.setSenha(senha);
-					}
+                    response.getWriter().print(jsonArray);
+                } else if (action.equals("create") || action.equals("update")) {
 
-					if (action.equals("create")) {
-						// Create new record
-						dao.incluirUsuario(usuario);
-					} else if (action.equals("update")) {
-						// Update existing record
-						dao.AlterarUsuario(usuario);
-					}
+                    String idUsuario = request.getParameter("idUsuario");
+                    int idUsuarioInt = Integer.parseInt(idUsuario);
+                    String nome = request.getParameter("nome");
+                    String login = request.getParameter("login");
+                    String senha = request.getParameter("senha");
+                    String email = request.getParameter("email");
+                    String cpf = request.getParameter("cpf");
+                    String cargo = request.getParameter("cargo");
+                    String ativo = request.getParameter("ativo");
 
-					// Return in the format required by jTable plugin
-					JSONROOT.put("Result", "OK");
-					JSONROOT.put("Record", usuario);
+                    //response.setContentType("text/html");
+                    //PrintWriter out = response.getWriter();
+                    Usuario usuario = new Usuario(nome, login, senha, email, cpf, cargo, ativo);
+                    UsuarioDAO novoUsuario = new UsuarioDAO();
 
-					// Convert Java Object to Json
-					String jsonArray = gson.toJson(JSONROOT);
-					response.getWriter().print(jsonArray);
-				} else if (action.equals("delete")) {
-					// Delete record
-					if (request.getParameter("idUsuario") != null) {
-						Usuario usuario = new Usuario();
-						dao.DesativarUsuario(usuario);
+                    if (action.equals("create")) {
+                        novoUsuario.incluirUsuario(usuario);
+                        // Create new record
+                        //dao.incluirUsuario(usuario);
+                    } else if (action.equals("update")) {
+                        // Update existing record
+                        novoUsuario.AlterarUsuario(nome,login,senha,email,cpf,cargo,ativo,idUsuarioInt);
+                    }
 
-						// Return in the format required by jTable plugin
-						JSONROOT.put("Result", "OK");
+                    // Return in the format required by jTable plugin
+                    JSONROOT.put("Result", "OK");
+                    JSONROOT.put("Record", usuario);
 
-						// Convert Java Object to Json
-						String jsonArray = gson.toJson(JSONROOT);
-						response.getWriter().print(jsonArray);
-					}
-				}
-			} catch (Exception ex) {
-				JSONROOT.put("Result", "ERROR");
-				JSONROOT.put("Message", ex.getMessage());
-				String error = gson.toJson(JSONROOT);
-				response.getWriter().print(error);
-			}
-		}
-	}
+                    // Convert Java Object to Json
+                    String jsonArray = gson.toJson(JSONROOT);
+                    response.getWriter().print(jsonArray);
+                } else if (action.equals("delete")) {
+                    // Delete record
+                    if (request.getParameter("idUsuario") != null) {
+                        Usuario usuario = new Usuario();
+                        dao.DesativarUsuario(usuario);
+
+                        // Return in the format required by jTable plugin
+                        JSONROOT.put("Result", "OK");
+
+                        // Convert Java Object to Json
+                        String jsonArray = gson.toJson(JSONROOT);
+                        response.getWriter().print(jsonArray);
+                    }
+                }
+            } catch (Exception ex) {
+                JSONROOT.put("Result", "ERROR");
+                JSONROOT.put("Message", ex.getMessage());
+                String error = gson.toJson(JSONROOT);
+                response.getWriter().print(error);
+            }
+        }
+    }
 }
