@@ -5,10 +5,186 @@
  */
 package easymarket.model.dao;
 
+import easymarket.model.pojo.Filial;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 /**
  *
  * @author Equipe F5
  */
 public class FilialDAO extends DAO {
-    
+    public void incluirFilial(Filial filial) {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "INSERT INTO TB_FILIAL (RAZAOSOCIAL , CNPJ, ENDERECO, CEP, BAIRRO, CIDADE, ESTADO,TELEFONE,ATIVO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        try {
+
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, filial.getRazaoSocial());
+            stmt.setString(2, filial.getCnpj());
+            stmt.setString(3, filial.getEndereco());
+            stmt.setString(4, filial.getCep());
+            stmt.setString(5, filial.getBairro());
+            stmt.setString(6, filial.getCidade());
+            stmt.setString(7, filial.getEstado());
+            stmt.setString(8, filial.getTelefone());
+            stmt.setString(9, filial.getAtivo());
+
+            stmt.executeUpdate();
+            System.out.println("Registro incluido com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void AlterarFilial(String razaoSocial, String cnpj,String endereco,String cep
+            ,String bairro,String cidade,String estado,String telefone,String ativo, int idFilial) 
+    {                
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "UPDATE TB_FILIAL SET RAZAOSOCIAL=?, CNPJ=?,ENDERECO=?,CEP=?,BAIRRO=?,CIDADE=?,ESTADO=?,TELEFONE=?,ATIVO=? WHERE ID_FILIAL=?";
+        try {                        
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, razaoSocial);
+            stmt.setString(2, cnpj);
+            stmt.setString(3, endereco);
+            stmt.setString(4, cep);
+            stmt.setString(5, bairro);
+            stmt.setString(6, cidade);
+            stmt.setString(7, estado);
+            stmt.setString(8, telefone);
+            stmt.setString(9, ativo);
+            stmt.setInt(10, idFilial);
+
+            stmt.executeUpdate();
+            System.out.println("Registro incluido com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void DesativarFilial(Filial filial) {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "UPDATE TB_FILIAL SET ATIVO=? WHERE ID_FILIAL=?";
+        try {
+
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, filial.getAtivo());
+            stmt.setInt(2, filial.getidFilial());
+
+            stmt.executeUpdate(sql);
+            //System.out.println("Registro incluido com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public List<Filial> getLista() throws SQLException {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM TB_FILIAL";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            rs = stmt.executeQuery();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        List<Filial> filiais = new ArrayList<Filial>();
+        while (rs.next()) {
+            //Criando um objeto tipo Contato  
+            Filial filial = new Filial();
+            filial.setidFilial(rs.getInt("ID_USUARIO"));
+            filial.setRazaoSocial(rs.getString("RAZAOSOCIAL"));
+            filial.setCnpj(rs.getString("CNPJ"));
+            filial.setEndereco(rs.getString("ENDERECO"));;
+            filial.setCep(rs.getString("CEP"));
+            filial.setBairro(rs.getString("BAIRRO"));
+            filial.setCidade(rs.getString("CIDADE"));
+            filial.setEstado(rs.getString("ESTADO"));
+            filial.setTelefone(rs.getString("TELEFONE "));
+            filial.setAtivo(rs.getString("ATIVO "));
+
+            //Adicionando Valores a lista  
+            filiais.add(filial);
+        }
+        rs.close();
+        stmt.close();
+        return filiais;
+    }
 }

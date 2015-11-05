@@ -11,16 +11,18 @@ package easymarket.model.pojo;
  */
 public class Filial {
     
+    private int idFilial;
     private String razaoSocial;
-    private long cnpj;
+    private String cnpj;
     private String endereco;
-    private long cep;
+    private String cep;
     private String bairro;
     private String cidade;
     private String estado;
-    private long telefone;
+    private String telefone;
+    private String ativo;
     
-    public Filial(String razaoSocial, long cnpj, String endereco, long cep, String bairro, String cidade, String estado, long telefone){
+    public Filial(String razaoSocial, String cnpj, String endereco, String cep, String bairro, String cidade, String estado, String telefone){
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.endereco = endereco;
@@ -31,6 +33,18 @@ public class Filial {
         this.telefone = telefone;
     }
 
+    public Filial() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    public int getidFilial()
+    {
+        return idFilial;
+    }
+    
+    public void setidFilial(int idFilial) {
+        this.idFilial = idFilial;
+    }
     /**
      * @return the razaoSocial
      */
@@ -48,14 +62,14 @@ public class Filial {
     /**
      * @return the cnpj
      */
-    public long getCnpj() {
+    public String getCnpj() {
         return cnpj;
     }
 
     /**
      * @param cnpj the cnpj to set
      */
-    public void setCnpj(long cnpj) {
+    public void setCnpj(String cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -76,14 +90,14 @@ public class Filial {
     /**
      * @return the cep
      */
-    public long getCep() {
+    public String getCep() {
         return cep;
     }
 
     /**
      * @param cep the cep to set
      */
-    public void setCep(long cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 
@@ -132,15 +146,26 @@ public class Filial {
     /**
      * @return the telefone
      */
-    public long getTelefone() {
+    public String getTelefone() {
         return telefone;
     }
 
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(long telefone) {
+    public void setTelefone(String telefone) {
         this.telefone = telefone;
+    }
+    
+    public String getAtivo() {
+        return ativo;
+    }
+
+    /**
+     * @param ativo the ativo to set
+     */
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
     }
     
     //criação dos scripts de banco de dados
