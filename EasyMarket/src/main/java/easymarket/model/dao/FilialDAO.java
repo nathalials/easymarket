@@ -15,11 +15,13 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 /**
  *
  * @author Equipe F5
  */
 public class FilialDAO extends DAO {
+
     public void incluirFilial(Filial filial) {
 
         PreparedStatement stmt = null;
@@ -65,14 +67,12 @@ public class FilialDAO extends DAO {
         }
     }
 
-    public void AlterarFilial(String razaoSocial, String cnpj,String endereco,String cep
-            ,String bairro,String cidade,String estado,String telefone,String ativo, int idFilial) 
-    {                
+    public void AlterarFilial(String razaoSocial, String cnpj, String endereco, String cep, String bairro, String cidade, String estado, String telefone, String ativo, int idFilial) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
         String sql = "UPDATE TB_FILIAL SET RAZAOSOCIAL=?, CNPJ=?,ENDERECO=?,CEP=?,BAIRRO=?,CIDADE=?,ESTADO=?,TELEFONE=?,ATIVO=? WHERE ID_FILIAL=?";
-        try {                        
+        try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt = conn.prepareStatement(sql);
@@ -112,21 +112,20 @@ public class FilialDAO extends DAO {
         }
     }
 
-    public void DesativarFilial(Filial filial) {
+    public void desativarFilial(int idFilial) {
 
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_FILIAL SET ATIVO=? WHERE ID_FILIAL=?";
+        String sql = "UPDATE TB_FILIAL SET ATIVO='N' WHERE ID_USUARIO=?";
         try {
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, filial.getAtivo());
-            stmt.setInt(2, filial.getidFilial());
-
-            stmt.executeUpdate(sql);
+            stmt.setInt(1, idFilial);
             //System.out.println("Registro incluido com sucesso.");
+
+            stmt.executeUpdate();
 
         } catch (SQLException ex) {
             Logger.getLogger(FilialDAO.class.getName()).log(Level.SEVERE, null, ex);

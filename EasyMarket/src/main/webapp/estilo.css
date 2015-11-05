@@ -31,10 +31,10 @@ body{
 .divsel {
     visibility: visible;
     position: fixed;
-    left: 18.2%; /*distância do conteúdo em relação à esquerda do browser*/
-    top: 19%; /*distância do conteúdo em relação ao topo*/
-    height: 72.5%;/*altura do conteúdo*/
-    width: 60.5%;/*largura do conteúdo*/
+    left: 14.2%; /*distância do conteúdo em relação à esquerda do browser*/
+    top: 21%; /*distância do conteúdo em relação ao topo*/
+    height: 70.5%;/*altura do conteúdo*/
+    width: 70.5%;/*largura do conteúdo*/
     background-color: #FFFFFF;/*cor de fundo do conteúdo*/
     right: 8%;
     border-radius: 20px;
@@ -49,9 +49,9 @@ body{
 
 #aba{
     position: fixed;
-    left: 18%;   
+    left: 14%;   
     top: 2%;
-    width: 62%; 
+    width: 72%; 
     height: 90%; 
     border-radius: 20px;
     border: solid #191970;

@@ -73,10 +73,8 @@ public class UsuarioDAO extends DAO {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_USUARIO SET NM_USUARIO=?, LG_USUARIO=?,PS_USUARIO=?,EMAIL=?,CPF=?,CARGO=?,ATIVO=? WHERE ID_USUARIO=?";
+        String sql = "UPDATE TB_USUARIO SET NM_USUARIO=?, LG_USUARIO=?,PS_USUARIO=?,EMAIL=?,CPF=?,CARGO=? WHERE ID_USUARIO=?";
         try {
-            
-            
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
@@ -86,8 +84,7 @@ public class UsuarioDAO extends DAO {
             stmt.setString(4, email);
             stmt.setString(5, cpf);
             stmt.setString(6, cargo);
-            stmt.setString(7, ativo);
-            stmt.setInt(8, IdUsuario);
+            stmt.setInt(7, IdUsuario);
 
             stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");
@@ -179,8 +176,9 @@ public class UsuarioDAO extends DAO {
             usuario.setCargo(rs.getString("CARGO"));
             usuario.setAtivo(rs.getString("ATIVO"));
 
-            //Adicionando Valores a lista  
             usuarios.add(usuario);
+
+            //Adicionando Valores a lista  
         }
         rs.close();
         stmt.close();

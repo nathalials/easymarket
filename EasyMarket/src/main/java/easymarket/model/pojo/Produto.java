@@ -12,7 +12,8 @@ import java.util.Date;
  * @author Equipe F5
  */
 public class Produto {
-    
+
+    private int idProduto;
     private String nome;
     private String marca;
     private String fornecedor;
@@ -25,11 +26,10 @@ public class Produto {
     private int estoqueMinimo;
     private int estoqueMaximo;
     private int qtdAtual;
-    private int qtdVendida;
-    private boolean status;
-    
+    private String ativo;
+
     public Produto(String nome, String marca, String fornecedor, long codigoDeBarras, long lote, Date dataValidade, String setor,
-            float precoCompra, float precoVenda, int estoqueMinimo, int estoqueMaximo, int qtdAtual, int qtdVendida, boolean status){
+            float precoCompra, float precoVenda, int estoqueMinimo, int estoqueMaximo, int qtdAtual, String ativo) {
         this.nome = nome;
         this.marca = marca;
         this.fornecedor = fornecedor;
@@ -42,8 +42,11 @@ public class Produto {
         this.estoqueMinimo = estoqueMinimo;
         this.estoqueMaximo = estoqueMaximo;
         this.qtdAtual = qtdAtual;
-        this.qtdVendida = qtdVendida;
-        this.status = status;
+        this.ativo = ativo;
+    }
+    
+    public Produto(){
+        
     }
 
     /**
@@ -215,32 +218,25 @@ public class Produto {
     }
 
     /**
-     * @return the qtdVendida
-     */
-    public int getQtdVendida() {
-        return qtdVendida;
-    }
-
-    /**
-     * @param qtdVendida the qtdVendida to set
-     */
-    public void setQtdVendida(int qtdVendida) {
-        this.qtdVendida = qtdVendida;
-    }
-
-    /**
      * @return the status
      */
-    public boolean isStatus() {
-        return status;
+    public String getAtivo() {
+        return ativo;
     }
 
     /**
      * @param status the status to set
      */
-    public void setStatus(boolean status) {
-        this.status = status;
+    public void setAtivo(String ativo) {
+        this.ativo = ativo;
     }
-    
-    
+
+    public int getIdProduto() {
+        return idProduto;
+    }
+
+    public void setIdProduto(int idProduto) {
+        this.idProduto = idProduto;
+    }
+
 }

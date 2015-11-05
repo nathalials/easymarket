@@ -75,16 +75,16 @@ THE SOFTWARE.
 
             //Localization
             messages: {
-                serverCommunicationError: 'An error occured while communicating to the server.',
-                loadingMessage: 'Loading records...',
-                noDataAvailable: 'No data available!',
-                areYouSure: 'Are you sure?',
-                save: 'Save',
-                saving: 'Saving',
-                cancel: 'Cancel',
-                error: 'Error',
-                close: 'Close',
-                cannotLoadOptionsFor: 'Can not load options for field {0}'
+                serverCommunicationError: 'Ocorreu um erro na comunicação com o servidor',
+                loadingMessage: 'Carregando dados...',
+                noDataAvailable: 'Não há dados disponíveis!',
+                areYouSure: 'Tem certeza?',
+                save: 'Salvar',
+                saving: 'Salvando',
+                cancel: 'Cancelar',
+                error: 'Erro',
+                close: 'Fechar',
+                cannotLoadOptionsFor: 'Não foi possível carregar opções {0}'
             }
         },
 
@@ -1942,14 +1942,16 @@ THE SOFTWARE.
             //Create a div for dialog and add to container element
             self._$addRecordDiv = $('<div />')
                 .appendTo(self._$mainContainer);
-
+        
             //Prepare dialog
+            //setar tamanho dialog
             self._$addRecordDiv.dialog({
                 autoOpen: false,
                 show: self.options.dialogShowEffect,
                 hide: self.options.dialogHideEffect,
-                width: 'auto',
-                minWidth: '300',
+                width: '400',
+                height: '440',
+                minWidth: '100',
                 modal: true,
                 title: self.options.messages.addNewRecord,
                 buttons:
@@ -2199,7 +2201,7 @@ THE SOFTWARE.
 
             //Localization
             messages: {
-                editRecord: 'Edit Record'
+                editRecord: 'Editar'
             }
         },
 
@@ -2581,11 +2583,11 @@ THE SOFTWARE.
 
             //Localization
             messages: {
-                deleteConfirmation: 'This record will be deleted. Are you sure?',
-                deleteText: 'Delete',
-                deleting: 'Deleting',
-                canNotDeletedRecords: 'Can not delete {0} of {1} records!',
-                deleteProggress: 'Deleting {0} of {1} records, processing...'
+                deleteConfirmation: 'Esse registro será deletado. Confirma?',
+                deleteText: 'Deletar',
+                deleting: 'Deletando',
+                canNotDeletedRecords: 'Não é possível deletar {0} dos {1} registros!',
+                deleteProggress: 'Deletando {0} dos {1} registros, carregando...'
             }
         },
 
