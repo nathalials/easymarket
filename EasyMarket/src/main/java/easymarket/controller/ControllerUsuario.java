@@ -58,9 +58,14 @@ public class ControllerUsuario extends HttpServlet {
 
                     response.getWriter().print(jsonArray);
                 } else if (action.equals("create") || action.equals("update")) {
-
-                    String idUsuario = request.getParameter("idUsuario");
-                    int idUsuarioInt = Integer.parseInt(idUsuario);
+                    int idUsuarioInt= 0; 
+                    
+                    if (action.equals("update")) 
+                    {
+                        String idUsuario = request.getParameter("idUsuario");
+                        idUsuarioInt = Integer.parseInt(idUsuario);
+                    }                    
+                                        
                     String nome = request.getParameter("nome");
                     String login = request.getParameter("login");
                     String senha = request.getParameter("senha");
@@ -92,9 +97,11 @@ public class ControllerUsuario extends HttpServlet {
                     response.getWriter().print(jsonArray);
                 } else if (action.equals("delete")) {
                     // Delete record
-                    if (request.getParameter("idUsuario") != null) {
-                        Usuario usuario = new Usuario();
-                        dao.DesativarUsuario(usuario);
+                    if (request.getParameter("idUsuario") != null) {                                                
+                        String idUsuario = request.getParameter("idUsuario");
+                        int idUsuarioInt = Integer.parseInt(idUsuario);
+                        
+                        usuarioDao.DesativarUsuario(idUsuarioInt);
 
                         // Return in the format required by jTable plugin
                         JSONROOT.put("Result", "OK");

@@ -114,20 +114,19 @@ public class UsuarioDAO extends DAO {
         }
     }
 
-    public void DesativarUsuario(Usuario usuario) {
+    public void DesativarUsuario(int idUsuario) {
 
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE ATIVO=? WHERE ID_USUARIO=?";
+        String sql = "UPDATE TB_USUARIO SET ATIVO='N' WHERE ID_USUARIO=?";
         try {
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, usuario.getAtivo());
-            stmt.setInt(2, usuario.getIdUsuario());
+            stmt.setInt(1, idUsuario);
 
-            stmt.executeUpdate(sql);
+            stmt.executeUpdate();
             //System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {

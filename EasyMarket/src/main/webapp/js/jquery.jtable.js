@@ -1908,7 +1908,7 @@ THE SOFTWARE.
 
             //Localization
             messages: {
-                addNewRecord: 'Add new record'
+                addNewRecord: 'Adicionar'
             }
         },
 

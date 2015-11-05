@@ -45,7 +45,8 @@
             
         </div>
 
-        <div id="textaba2" class="divunsel">Conteúdo da aba2 aqui</div>
+        <div id="textaba2" class="divunsel"><iframe src="index2.jsp" width="100%" height="100%"></iframe></div>
+        
         
         <!-- Aba produtos -->
         <div id="textaba3" class="divunsel">

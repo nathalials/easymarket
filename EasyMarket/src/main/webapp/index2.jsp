@@ -12,7 +12,7 @@
 
 <script type="text/javascript">
 	$(document).ready(function() {
-		$('#StudentTableContainer').jtable({
+		$('#UserTable').jtable({
 			title : 'Lista Usuarios',
 			actions : {
 				listAction : 'ControllerUsuario?action=list',
@@ -43,7 +43,7 @@
 					title : 'Senha',
 					width : '20%',
 					edit : true,
-                                        display : false
+                                        list : false
 				},
                                 email : {
 					title : 'E-mail',
@@ -58,16 +58,20 @@
                                 cargo : {
 					title : 'Cargo',
 					width : '20%',
-					edit : true
+					edit : true,
+                                        options: { "G": 'Gerente', "B": 'BackOffice', "C": 'Caixa' }
 				},
                                 ativo : {
 					title : 'Status',
 					width : '20%',
+                                        type: 'radiobutton',
+                                        options: { "S": 'Ativado', "N": 'Desativado' },
 					edit : true
+                           
 				}
 			}
 		});
-		$('#StudentTableContainer').jtable('load');
+		$('#UserTable').jtable('load');
 	});
 </script>
 
@@ -76,7 +80,7 @@
 <div style="width: 80%; margin-right: 10%; margin-left: 10%; text-align: center;">
 
 		<h4>Usuários do EasyMarket</h4>
-		<div id="StudentTableContainer"></div>
+		<div id="UserTable"></div>
 	</div>
 </body>
 </html>
