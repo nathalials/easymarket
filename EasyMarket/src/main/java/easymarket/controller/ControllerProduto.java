@@ -13,9 +13,8 @@ import easymarket.model.pojo.Produto;
 import easymarket.model.pojo.Usuario;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
+import java.sql.Date;
 import java.util.HashMap;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -124,8 +123,6 @@ public class ControllerProduto extends HttpServlet {
                     long codigoDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
                     long lote = Long.parseLong(request.getParameter("lote"));
                     String dataValidade = request.getParameter("dataValidade");
-                    SimpleDateFormat sdf = new SimpleDateFormat("dd-MM-yyyy");
-                    Date dataDeValidade = sdf.parse(dataValidade);
                     String setor = request.getParameter("setor");
                     float precoCompra = Float.parseFloat(request.getParameter("precoCompra"));
                     float precoVenda = Float.parseFloat(request.getParameter("precoVenda"));
@@ -136,7 +133,7 @@ public class ControllerProduto extends HttpServlet {
 
                     //response.setContentType("text/html");
                     //PrintWriter out = response.getWriter();
-                    Produto produto = new Produto(nome, marca, fornecedor, codigoDeBarras, lote, dataDeValidade, setor, precoCompra, precoVenda, estoqueMinimo, estoqueMaximo, qtdAtual, ativo);
+                    Produto produto = new Produto(nome, marca, fornecedor, codigoDeBarras, lote, dataValidade, setor, precoCompra, precoVenda, estoqueMinimo, estoqueMaximo, qtdAtual, ativo);
                     ProdutoDAO novoProduto = new ProdutoDAO();
 
                     if (action.equals("create")) {
@@ -145,7 +142,7 @@ public class ControllerProduto extends HttpServlet {
                         //dao.incluirUsuario(usuario);
                     } else if (action.equals("update")) {
                         // Update existing record
-                        novoProduto.alterarProduto(nome, marca, fornecedor, codigoDeBarras, lote, dataDeValidade, setor, precoCompra, precoVenda, estoqueMinimo, estoqueMaximo, qtdAtual, ativo, idProdutoInt);
+                        novoProduto.alterarProduto(nome, marca, fornecedor, codigoDeBarras, lote, dataValidade, setor, precoCompra, precoVenda, estoqueMinimo, estoqueMaximo, qtdAtual, ativo, idProdutoInt);
                     }
 
                     // Return in the format required by jTable plugin

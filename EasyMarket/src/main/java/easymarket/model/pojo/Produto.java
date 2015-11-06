@@ -5,7 +5,6 @@
  */
 package easymarket.model.pojo;
 
-import java.util.Date;
 
 /**
  *
@@ -19,7 +18,7 @@ public class Produto {
     private String fornecedor;
     private long codigoDeBarras;
     private long lote;
-    private Date dataValidade;
+    private String dataValidade;
     private String setor;
     private float precoCompra;
     private float precoVenda;
@@ -28,7 +27,7 @@ public class Produto {
     private int qtdAtual;
     private String ativo;
 
-    public Produto(String nome, String marca, String fornecedor, long codigoDeBarras, long lote, Date dataValidade, String setor,
+    public Produto(String nome, String marca, String fornecedor, long codigoDeBarras, long lote, String dataValidade, String setor,
             float precoCompra, float precoVenda, int estoqueMinimo, int estoqueMaximo, int qtdAtual, String ativo) {
         this.nome = nome;
         this.marca = marca;
@@ -122,14 +121,14 @@ public class Produto {
     /**
      * @return the dataValidade
      */
-    public Date getDataValidade() {
+    public String getDataValidade() {
         return dataValidade;
     }
 
     /**
      * @param dataValidade the dataValidade to set
      */
-    public void setDataValidade(Date dataValidade) {
+    public void setDataValidade(String dataValidade) {
         this.dataValidade = dataValidade;
     }
 

@@ -7,11 +7,11 @@ package easymarket.model.dao;
 
 import easymarket.model.pojo.Produto;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
@@ -30,7 +30,9 @@ public class ProdutoDAO extends DAO {
 
         String sql = "INSERT INTO TB_PRODUTO (NOME,  MARCA, FORNECEDOR, CODIGODEBARRA, LOTE, "
                 + "DATAVALIDADE, SETOR, PRECOCOMPRA, PRECOVENDA, ESTOQUEMINIMO, ESTOQUEMAXIMO, QTDATUAL, ATIVO) "
-                + "VALUES (?, ?, ?, ?, ?, ?, ?)";
+                + "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
+        
+        
         try {
 
             conn = obterConexao();
@@ -40,7 +42,7 @@ public class ProdutoDAO extends DAO {
             stmt.setString(3, produto.getFornecedor());
             stmt.setLong(4, produto.getCodigoDeBarras());
             stmt.setLong(5, produto.getLote());
-            stmt.setDate(6, (Date) produto.getDataValidade());
+            stmt.setString(6, produto.getDataValidade());
             stmt.setString(7, produto.getSetor());
             stmt.setFloat(8, produto.getPrecoCompra());
             stmt.setFloat(9, produto.getPrecoVenda());
@@ -74,7 +76,7 @@ public class ProdutoDAO extends DAO {
         }
     }
 
-    public void alterarProduto(String nome, String marca, String fornecedor, long codigoDeBarras, long lote, java.util.Date dataValidade, String setor,
+    public void alterarProduto(String nome, String marca, String fornecedor, long codigoDeBarras, long lote, String dataValidade, String setor,
             float precoCompra, float precoVenda, int estoqueMinimo, int estoqueMaximo, int qtdAtual, String ativo, int idProduto) {
 
         PreparedStatement stmt = null;
@@ -91,7 +93,7 @@ public class ProdutoDAO extends DAO {
             stmt.setString(3, fornecedor);
             stmt.setLong(4, codigoDeBarras);
             stmt.setLong(5, lote);
-            stmt.setDate(6, (Date) dataValidade);
+            stmt.setString(6, dataValidade);
             stmt.setString(7, setor);
             stmt.setFloat(8, precoCompra);
             stmt.setFloat(9, precoVenda);
@@ -130,7 +132,7 @@ public class ProdutoDAO extends DAO {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_PRODUTO SET ATIVO='N' WHERE TD_PRODUTO=?";
+        String sql = "UPDATE TB_PRODUTO SET ATIVO='N' WHERE ID_PRODUTO=?";
         try {
 
             conn = obterConexao();
@@ -187,7 +189,7 @@ public class ProdutoDAO extends DAO {
             produto.setFornecedor(rs.getString("FORNECEDOR"));;
             produto.setCodigoDeBarras(rs.getLong("CODIGODEBARRA"));
             produto.setLote(rs.getLong("LOTE"));
-            produto.setDataValidade(rs.getDate("DATAVALIDADE"));
+            produto.setDataValidade(rs.getString("DATAVALIDADE"));
             produto.setSetor(rs.getString("SETOR"));
             produto.setPrecoCompra(rs.getFloat("PRECOCOMPRA"));
             produto.setPrecoVenda(rs.getFloat("PRECOVENDA"));
@@ -197,6 +199,7 @@ public class ProdutoDAO extends DAO {
             produto.setAtivo(rs.getString("ATIVO"));
 
             //Adicionando Valores a lista  
+            produtos.add(produto);
         }
         rs.close();
         stmt.close();
