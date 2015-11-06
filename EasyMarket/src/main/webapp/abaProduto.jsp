@@ -104,13 +104,8 @@
                         }
 
 
-                    },
-                    formCreated: function (event, data)
-                    {
-                        data.form.find('[name=precoCompra]').mask('99.99');
-                        data.form.find('[name=precoVenda]').mask('99.99');
-
                     }
+         
                 });
                 $('#ProdutoTable').jtable('load');
             });

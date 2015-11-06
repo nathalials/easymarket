@@ -7,7 +7,7 @@ body{
 .unsel {
     font-style: normal;
     width:13.67%;
-    height: 24px;
+    height: 26px;
     display:inline-block;
     background-color: #CCCCCC;
     border-radius: 5px;
@@ -21,7 +21,7 @@ body{
 .sel {
     background-color: #FFFFFF;
     width:18.5%;
-    height: 24px;
+    height: 26px;
     display:inline-block;
     border-radius: 5px;
     text-align:center;
@@ -35,7 +35,7 @@ body{
     visibility: visible;
     position: fixed;
     left: 8.2%; /*distância do conteúdo em relação à esquerda do browser*/
-    top: 21%; /*distância do conteúdo em relação ao topo*/
+    top: 19.5%; /*distância do conteúdo em relação ao topo*/
     height: 70.5%;/*altura do conteúdo*/
     width: 83.5%;/*largura do conteúdo*/
     background-color: #FFFFFF;/*cor de fundo do conteúdo*/
@@ -53,7 +53,7 @@ body{
 #aba{
     position: fixed;
     left: 8%;   
-    top: 2%;
+    top: 2.2%;
     width: 85%; 
     height: 90%; 
     border-radius: 20px;
@@ -69,7 +69,7 @@ body{
     left:45%;
     top:8%;
     color:#FFFFFF;
-    font-size:25px;
+    font-size:28px;
 }
 
 #img_carrinho{
