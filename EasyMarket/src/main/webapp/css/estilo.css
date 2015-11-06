@@ -2,28 +2,31 @@
 body{
     width: 100%;
     margin:auto;
+    font-family: Arial;
 }
 .unsel {
     font-style: normal;
-    width:12.67%;
+    width:13.67%;
+    height: 24px;
     display:inline-block;
-    background-color: #FFFFFF;
+    background-color: #CCCCCC;
     border-radius: 5px;
     text-align:center;
     position:relative;
-    top:8.5%;
+    top:7.9%;
     right:1%;
 }
 
 
 .sel {
-    background-color: #DCDCDC;
-    width:23.5%;
+    background-color: #FFFFFF;
+    width:18.5%;
+    height: 24px;
     display:inline-block;
     border-radius: 5px;
     text-align:center;
     position:relative;
-    top:8.5%;
+    top:7.9%;
     right:1%;
 
 }
@@ -31,10 +34,10 @@ body{
 .divsel {
     visibility: visible;
     position: fixed;
-    left: 14.2%; /*distância do conteúdo em relação à esquerda do browser*/
+    left: 8.2%; /*distância do conteúdo em relação à esquerda do browser*/
     top: 21%; /*distância do conteúdo em relação ao topo*/
     height: 70.5%;/*altura do conteúdo*/
-    width: 70.5%;/*largura do conteúdo*/
+    width: 83.5%;/*largura do conteúdo*/
     background-color: #FFFFFF;/*cor de fundo do conteúdo*/
     right: 8%;
     border-radius: 20px;
@@ -49,14 +52,14 @@ body{
 
 #aba{
     position: fixed;
-    left: 14%;   
+    left: 8%;   
     top: 2%;
-    width: 72%; 
+    width: 85%; 
     height: 90%; 
     border-radius: 20px;
-    border: solid #191970;
+    border: solid #033076;
     padding: 15px 0px 10px 0px;
-    background:#191970;
+    background:#033076;
 }
 
 #logo_easymarket{
@@ -64,7 +67,7 @@ body{
     width:50px;
     height:50px;
     left:45%;
-    top:10%;
+    top:8%;
     color:#FFFFFF;
     font-size:25px;
 }
@@ -74,7 +77,7 @@ body{
     width:50px;
     height:50px;
     left:7%;
-    top:3%;	
+    top:1%;	
 }
 
 #t_usuario{
@@ -89,14 +92,14 @@ body{
 }
 
 #user_enviar{
-       position:fixed;
-       left:60%;
+    position:fixed;
+    left:60%;
 }
 
 #produto_enviar{
-       position:fixed;
-       left:70%;
-       top:65%;
+    position:fixed;
+    left:70%;
+    top:65%;
 }
 
 #t_produto{

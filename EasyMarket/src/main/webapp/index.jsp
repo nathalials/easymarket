@@ -10,8 +10,8 @@
     <head>
         <title>EasyMarket</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-        <link rel="stylesheet" type="text/css" href="estilo.css">
-        <script language="JavaScript" src="jquery.js"></script>	
+        <link rel="stylesheet" type="text/css" href="css/estilo.css">
+        <script language="JavaScript" src="js/jquery.js"></script>	
     </head>
 
     <body>
