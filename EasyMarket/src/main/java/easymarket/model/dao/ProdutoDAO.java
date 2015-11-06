@@ -83,7 +83,7 @@ public class ProdutoDAO extends DAO {
         Connection conn = null;
 
         String sql = "UPDATE TB_PRODUTO SET NOME=?, MARCA=?,FORNECEDOR=?,CODIGODEBARRA=?,LOTE=?,DATAVALIDADE=?, "
-                + "SETOR=?,PRECOCOMPRA=?,PRECOVENDA=?,ESTOQUEMINIMO=?,ESTOQUEMAXIMO=?,QTDATUAL=? WHERE ID_PRODUTO=?";
+                + "SETOR=?,PRECOCOMPRA=?,PRECOVENDA=?,ESTOQUEMINIMO=?,ESTOQUEMAXIMO=?,QTDATUAL=?, ATIVO=? WHERE ID_PRODUTO=?";
         try {
 
             conn = obterConexao();
@@ -100,7 +100,8 @@ public class ProdutoDAO extends DAO {
             stmt.setInt(10, estoqueMinimo);
             stmt.setInt(11, estoqueMaximo);
             stmt.setInt(12, qtdAtual);
-            stmt.setInt(13, idProduto);
+            stmt.setString(13, ativo);
+            stmt.setInt(14, idProduto);
 
             stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");

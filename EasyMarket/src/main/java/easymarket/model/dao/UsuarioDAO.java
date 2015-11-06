@@ -73,7 +73,7 @@ public class UsuarioDAO extends DAO {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_USUARIO SET NM_USUARIO=?, LG_USUARIO=?,PS_USUARIO=?,EMAIL=?,CPF=?,CARGO=? WHERE ID_USUARIO=?";
+        String sql = "UPDATE TB_USUARIO SET NM_USUARIO=?, LG_USUARIO=?,PS_USUARIO=?,EMAIL=?,CPF=?,CARGO=?, ATIVO=? WHERE ID_USUARIO=?";
         try {
 
             conn = obterConexao();
@@ -84,6 +84,7 @@ public class UsuarioDAO extends DAO {
             stmt.setString(4, email);
             stmt.setString(5, cpf);
             stmt.setString(6, cargo);
+            stmt.setString(7, ativo);
             stmt.setInt(7, IdUsuario);
 
             stmt.executeUpdate();
@@ -170,7 +171,7 @@ public class UsuarioDAO extends DAO {
             usuario.setIdUsuario(rs.getInt("ID_USUARIO"));
             usuario.setNome(rs.getString("NM_USUARIO"));
             usuario.setLogin(rs.getString("LG_USUARIO"));
-            usuario.setSenha(rs.getString("PS_USUARIO"));;
+            usuario.setSenha(rs.getString("PS_USUARIO"));
             usuario.setEmail(rs.getString("EMAIL"));
             usuario.setCpf(rs.getString("CPF"));
             usuario.setCargo(rs.getString("CARGO"));
