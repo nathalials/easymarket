@@ -27,19 +27,19 @@ public class FilialDAO extends DAO {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "INSERT INTO TB_FILIAL (RAZAOSOCIAL , CNPJ, ENDERECO, CEP, BAIRRO, CIDADE, ESTADO,TELEFONE,ATIVO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_FILIAL (RAZAOSOCIAL , CNPJ, ENDERECO, CEP, BAIRRO, CIDADE, ESTADO,TELEFONE,ATIVO) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
         try {
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, filial.getRazaoSocial());
-            stmt.setString(2, filial.getCnpj());
+            stmt.setLong(2, filial.getCnpj());
             stmt.setString(3, filial.getEndereco());
-            stmt.setString(4, filial.getCep());
+            stmt.setLong(4, filial.getCep());
             stmt.setString(5, filial.getBairro());
             stmt.setString(6, filial.getCidade());
             stmt.setString(7, filial.getEstado());
-            stmt.setString(8, filial.getTelefone());
+            stmt.setLong(8, filial.getTelefone());
             stmt.setString(9, filial.getAtivo());
 
             stmt.executeUpdate();
@@ -67,7 +67,7 @@ public class FilialDAO extends DAO {
         }
     }
 
-    public void AlterarFilial(String razaoSocial, String cnpj, String endereco, String cep, String bairro, String cidade, String estado, String telefone, String ativo, int idFilial) {
+    public void AlterarFilial(String razaoSocial, long cnpj, String endereco, long cep, String bairro, String cidade, String estado, long telefone, String ativo, int idFilial) {
         PreparedStatement stmt = null;
         Connection conn = null;
 
@@ -77,13 +77,13 @@ public class FilialDAO extends DAO {
             stmt = conn.prepareStatement(sql);
             stmt = conn.prepareStatement(sql);
             stmt.setString(1, razaoSocial);
-            stmt.setString(2, cnpj);
+            stmt.setLong(2, cnpj);
             stmt.setString(3, endereco);
-            stmt.setString(4, cep);
+            stmt.setLong(4, cep);
             stmt.setString(5, bairro);
             stmt.setString(6, cidade);
             stmt.setString(7, estado);
-            stmt.setString(8, telefone);
+            stmt.setLong(8, telefone);
             stmt.setString(9, ativo);
             stmt.setInt(10, idFilial);
 
@@ -117,7 +117,7 @@ public class FilialDAO extends DAO {
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_FILIAL SET ATIVO='N' WHERE ID_USUARIO=?";
+        String sql = "UPDATE TB_FILIAL SET ATIVO='N' WHERE ID_FILIAL=?";
         try {
 
             conn = obterConexao();
@@ -168,16 +168,16 @@ public class FilialDAO extends DAO {
         while (rs.next()) {
             //Criando um objeto tipo Contato  
             Filial filial = new Filial();
-            filial.setidFilial(rs.getInt("ID_USUARIO"));
+            filial.setidFilial(rs.getInt("ID_FILIAL"));
             filial.setRazaoSocial(rs.getString("RAZAOSOCIAL"));
-            filial.setCnpj(rs.getString("CNPJ"));
-            filial.setEndereco(rs.getString("ENDERECO"));;
-            filial.setCep(rs.getString("CEP"));
+            filial.setCnpj(rs.getLong("CNPJ"));
+            filial.setEndereco(rs.getString("ENDERECO"));
+            filial.setCep(rs.getLong("CEP"));
             filial.setBairro(rs.getString("BAIRRO"));
             filial.setCidade(rs.getString("CIDADE"));
             filial.setEstado(rs.getString("ESTADO"));
-            filial.setTelefone(rs.getString("TELEFONE "));
-            filial.setAtivo(rs.getString("ATIVO "));
+            filial.setTelefone(rs.getLong("TELEFONE"));
+            filial.setAtivo(rs.getString("ATIVO"));
 
             //Adicionando Valores a lista  
             filiais.add(filial);

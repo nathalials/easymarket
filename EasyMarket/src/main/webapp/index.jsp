@@ -29,10 +29,13 @@
 
         <!-- Aba usuario -->
         <div id="textaba1" class="divsel">
-            <iframe src="abaUsuario.jsp" width="100%" height="100%"></iframe>
+            <iframe src="abaUsuario.jsp" width="100%" height="100%"></iframe>     
         </div>
 
-        <div id="textaba2" class="divunsel">Aba 2</div>
+        <!-- Aba filial -->
+        <div id="textaba2" class="divunsel">
+            <iframe src="abaFilial.jsp" width="100%" height="100%"></iframe>
+        </div>
 
 
         <!-- Aba produtos -->

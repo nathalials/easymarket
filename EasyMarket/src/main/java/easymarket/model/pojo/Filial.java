@@ -13,16 +13,20 @@ public class Filial {
     
     private int idFilial;
     private String razaoSocial;
-    private String cnpj;
+    private long cnpj;
     private String endereco;
-    private String cep;
+    private long cep;
     private String bairro;
     private String cidade;
     private String estado;
-    private String telefone;
+    private long telefone;
     private String ativo;
     
-    public Filial(String razaoSocial, String cnpj, String endereco, String cep, String bairro, String cidade, String estado, String telefone){
+    public Filial(){
+        
+    }
+    
+    public Filial(String razaoSocial, long cnpj, String endereco, long cep, String bairro, String cidade, String estado, long telefone, String ativo){
         this.razaoSocial = razaoSocial;
         this.cnpj = cnpj;
         this.endereco = endereco;
@@ -31,10 +35,7 @@ public class Filial {
         this.cidade = cidade;
         this.estado = estado;
         this.telefone = telefone;
-    }
-
-    public Filial() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        this.ativo = ativo;
     }
 
     public int getidFilial()
@@ -62,14 +63,14 @@ public class Filial {
     /**
      * @return the cnpj
      */
-    public String getCnpj() {
+    public long getCnpj() {
         return cnpj;
     }
 
     /**
      * @param cnpj the cnpj to set
      */
-    public void setCnpj(String cnpj) {
+    public void setCnpj(long cnpj) {
         this.cnpj = cnpj;
     }
 
@@ -90,14 +91,14 @@ public class Filial {
     /**
      * @return the cep
      */
-    public String getCep() {
+    public long getCep() {
         return cep;
     }
 
     /**
      * @param cep the cep to set
      */
-    public void setCep(String cep) {
+    public void setCep(long cep) {
         this.cep = cep;
     }
 
@@ -146,14 +147,14 @@ public class Filial {
     /**
      * @return the telefone
      */
-    public String getTelefone() {
+    public long getTelefone() {
         return telefone;
     }
 
     /**
      * @param telefone the telefone to set
      */
-    public void setTelefone(String telefone) {
+    public void setTelefone(long telefone) {
         this.telefone = telefone;
     }
     
