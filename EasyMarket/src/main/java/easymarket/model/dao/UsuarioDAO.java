@@ -185,4 +185,41 @@ public class UsuarioDAO extends DAO {
         stmt.close();
         return usuarios;
     }
+
+    public List<Usuario> getListaFilter(String nome) throws SQLException {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        String sql = "SELECT * FROM TB_USUARIO WHERE NM_USUARIO =?";
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, nome);
+            rs = stmt.executeQuery();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        List<Usuario> usuarios = new ArrayList<Usuario>();
+        while (rs.next()) {
+            //Criando um objeto tipo Contato  
+            Usuario usuario = new Usuario();
+            usuario.setIdUsuario(rs.getInt("ID_USUARIO"));
+            usuario.setNome(rs.getString("NM_USUARIO"));
+            usuario.setLogin(rs.getString("LG_USUARIO"));
+            usuario.setSenha(rs.getString("PS_USUARIO"));
+            usuario.setEmail(rs.getString("EMAIL"));
+            usuario.setCpf(rs.getString("CPF"));
+            usuario.setCargo(rs.getString("CARGO"));
+            usuario.setAtivo(rs.getString("ATIVO"));
+
+            usuarios.add(usuario);
+
+        }
+        rs.close();
+        stmt.close();
+        return usuarios;
+    }
 }

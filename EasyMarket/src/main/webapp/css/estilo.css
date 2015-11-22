@@ -7,42 +7,89 @@ body{
 .unsel {
     font-style: normal;
     width:13.67%;
-    height: 26px;
+    height: 28px;
     display:inline-block;
     background-color: #CCCCCC;
-    border-radius: 5px;
+    border-top-right-radius:5px;
+    border-top-left-radius:5px;
     text-align:center;
     position:relative;
-    top:7.9%;
+    top:5.2%;
     right:1%;
 }
 
+iframe {
+    
+    overflow:hidden;
+    overflow-x:hidden;
+    overflow-y:hidden;
+    height:100%;
+    width:100%;
+    position:absolute;
+    top:0px;
+    left:0px;
+    right:0px;
+    bottom:0px;
+}
+
+.abaFrame{
+    margin:0px;
+    padding:0px;
+    overflow:hidden;
+}
+
+.login{
+    text-align: center;
+    padding-top: 10%;
+}
+
+.dados{
+    color: #FFFFFF;
+    margin-left : 9px;
+    
+}
+
+.campo{
+    width:180px;
+    margin-left : 9px;
+    width: 250px;
+
+}
+
+#botaoEnviar{
+    margin-left: 260px;
+}
 
 .sel {
     background-color: #FFFFFF;
     width:18.5%;
-    height: 26px;
+    height: 28px;
     display:inline-block;
-    border-radius: 5px;
+     border-top-right-radius:5px;
+    border-top-left-radius:5px;
     text-align:center;
     position:relative;
-    top:7.9%;
+    top:5.2%;
     right:1%;
 
 }
 
 .divsel {
-    visibility: visible;
-    position: fixed;
-    left: 8.2%; /*distância do conteúdo em relação à esquerda do browser*/
-    top: 19.5%; /*distância do conteúdo em relação ao topo*/
-    height: 70.5%;/*altura do conteúdo*/
-    width: 83.5%;/*largura do conteúdo*/
-    background-color: #FFFFFF;/*cor de fundo do conteúdo*/
-    right: 8%;
-    border-radius: 20px;
+    //visibility: visible;
+    position: relative;
+    //left: 1%; /*distância do conteúdo em relação à esquerda do browser*/
+    //top: 5%; /*distância do conteúdo em relação ao topo*/
+    height: 78%;/*altura do conteúdo*/
+    width: 100%;/*largura do conteúdo*/
+    background-color: #EBEBEB;/*cor de fundo do conteúdo*/
+    //right: 8%;
+    //border-radius: 20px;
+    border-bottom-right-radius:20px;
+    border-bottom-left-radius:20px;
     padding: 20px 10px 10px 10px;
 }
+
+
 
 .divunsel {
     visibility: hidden;
@@ -52,10 +99,10 @@ body{
 
 #aba{
     position: fixed;
-    left: 8%;   
-    top: 2.2%;
-    width: 85%; 
-    height: 90%; 
+    left: 2.5%;   
+    top: 2%;
+    width: 95%; 
+    height: 95%; 
     border-radius: 20px;
     border: solid #033076;
     padding: 15px 0px 10px 0px;
@@ -63,21 +110,38 @@ body{
 }
 
 #logo_easymarket{
-    position:fixed;
-    width:50px;
+    position:relative;
+    width:80px;
     height:50px;
-    left:45%;
-    top:8%;
-    color:#FFFFFF;
+    left:42%;
+    top:7%;
+    color:#D4E3FC;
     font-size:28px;
+    font-family: inherit;
 }
 
 #img_carrinho{
-    position:relative;
-    width:50px;
-    height:50px;
-    left:7%;
-    top:1%;	
+    position:absolute;
+    width:68px;
+    height:65px;
+    left:1.5%;
+    top:2.5%;	
+}
+
+#img_online{
+    position: absolute;
+    width: 18%;
+    height: 60%;
+    top: 35%;
+    left: 80%;
+}
+
+#logout{
+    position: absolute;
+    left:95%;
+    top: 5%;
+    width: 40px;
+    height: 50px;
 }
 
 #t_usuario{

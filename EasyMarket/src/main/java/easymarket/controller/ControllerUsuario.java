@@ -49,7 +49,7 @@ public class ControllerUsuario extends HttpServlet {
                 if (action.equals("list")) {
 
                     listaUsuarios = usuarioDao.getLista();
-
+                    
                     JSONROOT.put("Result", "OK");
                     JSONROOT.put("Records", listaUsuarios);
 

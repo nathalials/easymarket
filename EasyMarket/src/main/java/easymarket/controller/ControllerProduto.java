@@ -98,7 +98,7 @@ public class ControllerProduto extends HttpServlet {
         if (action != null) {
             try {
                 if (action.equals("list")) {
-
+                    
                     listaProdutos = produtoDAO.getLista();
 
                     JSONROOT.put("Result", "OK");

@@ -15,7 +15,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#UserTable').jtable({
-                    title: 'Lista Usuarios',
+                    title: 'Usuários',
                     actions: {
                         listAction: 'ControllerUsuario?action=list',
                         createAction: 'ControllerUsuario?action=create',
@@ -80,14 +80,31 @@
 
                 });
                 $('#UserTable').jtable('load');
+//                //Re-load records when user click 'load records' button.
+//                $('#LoadRecordsButton').click(function (e) {
+//                    e.preventDefault();
+//                    $('#UserTable').jtable('load', {
+//                        nome: $('#nome').val()
+//                    });
+//                });
+//                //remove your comments .. the code below is for running the function above when loadrecords button is clicked
+//                $('#LoadRecordsButton').click();
             });
+
         </script>
 
     </head>
     <body>
-        <div style="width: 100%; text-align: center; height: 100%;">
-
-            <div id="UserTable"></div>
+        <!--        <div style="width: 100%; text-align: center; height: 100%;">-->
+        <div class="filtering">
+            <form>
+                Nome: <input type="text" name="nome" id="nome" />   
+                <button type="submit" id="LoadRecordsButton">Buscar</button>
+            </form>
         </div>
+        <div id="UserTable"></div>
+
+
+
     </body>
 </html>

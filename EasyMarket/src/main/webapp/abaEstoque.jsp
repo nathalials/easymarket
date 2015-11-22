@@ -18,9 +18,9 @@
                     title: 'Produtos',
                     actions: {
                         listAction: 'ControllerProduto?action=list',
-                        createAction: 'ControllerProduto?action=create',
-                        updateAction: 'ControllerProduto?action=update',
-                        deleteAction: 'ControllerProduto?action=delete'
+                        //createAction: 'ControllerProduto?action=create',
+                        //updateAction: 'ControllerProduto?action=update',
+                        //deleteAction: 'ControllerProduto?action=delete'
                     },
                     fields: {
                         idProduto: {
@@ -34,68 +34,86 @@
                         nome: {
                             title: 'Nome',
                             width: '30%',
-                            edit: true
+                            list: true,
+                            edit: false,
+                            create: false
                         },
                         marca: {
                             title: 'Marca',
                             width: '30%',
-                            edit: true
+                            list: true,
+                            edit: false,
+                            create: false
                         },
                         codigoDeBarras: {
                             title: 'Cód Barras',
                             width: '20%',
-                            edit: true
+                            list: true,
+                            edit: false,
+                            create: false
                         },
                         lote: {
                             title: 'Lote',
                             width: '20%',
-                            edit: true
+                            list: true,
+                            edit: false,
+                            create: false
                         },
                         dataValidade: {
                             title: 'Data Validade',
                             width: '20%',
-                            edit: true,
+                            list: true,
+                            edit: false,
+                            create: false,
                             type: 'date'
                         },
                         setor: {
                             title: 'Setor',
                             width: '20%',
-                            edit: true,
+                            list: true,
+                            edit: false,
+                            create: false,
                             options: {"Alimentos": 'Alimentos', "Higiene": 'Higiene', "Limpeza": 'Limpeza', "Bebidas": 'Bebidas'}
 
                         },
                         precoCompra: {
                             title: 'Preço Compra',
                             width: '20%',
-                            edit: true,
-                            list:false
+                            list: false,
+                            edit: false,
+                            create: false
 
                         },
                         precoVenda: {
                             title: 'Preço Venda',
                             width: '20%',
-                            edit: true,
-                            list:false
+                            list: false,
+                            edit: false,
+                            create: false
 
                         },
                         estoqueMinimo: {
-                            title: 'Estq Min',
+                            title: 'Estq Mín',
                             width: '20%',
-                            edit: true,
-                            list:false
+                            list: true,
+                            edit: false,
+                            create: false
 
                         },
                         estoqueMaximo: {
-                            title: 'Estq Max',
+                            title: 'Estq Máx',
                             width: '20%',
-                            edit: true,
-                            list:false
+                            list: true,
+                            edit: false,
+                            create: false
 
                         },
                         qtdAtual: {
                             title: 'Qtd Atual',
                             width: '20%',
-                            edit: true
+                            list: true,
+                            edit: false,
+                            create: false
 
                         },
                         ativo: {
@@ -103,7 +121,9 @@
                             width: '20%',
                             type: 'radiobutton',
                             options: {"S": 'Ativado', "N": 'Desativado'},
-                            edit: true
+                            list: true,
+                            edit: false,
+                            create: false
 
                         }
 

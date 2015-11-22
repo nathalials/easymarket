@@ -1,49 +1,70 @@
-<%-- 
-    Document   : index
-    Created on : 02/11/2015, 08:45:59
-    Author     : DU
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
     <head>
         <title>EasyMarket</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" type="text/css" href="css/estilo.css">
-        <script language="JavaScript" src="js/jquery.js"></script>	
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
 
     <body>
 
-        <div id="aba">
+        <div id="aba"> 
             <label id="logo_easymarket">EasyMarket</label>
-            <img id="img_carrinho" src="carrinhoDeCompras.png"></img>
-            <div id="aba1" class="sel" onClick="sel(this.id)">Usuários</div>
-            <div id="aba2" class="unsel" onClick="sel(this.id)">Filiais</div>
-            <div id="aba3" class="unsel" onClick="sel(this.id)">Produtos</div>
-            <div id="aba4" class="unsel" onClick="sel(this.id)">Vendas</div>
-            <div id="aba5" class="unsel" onClick="sel(this.id)">Estoque</div>
-            <div id="aba6" class="unsel" onClick="sel(this.id)">Relatório</div>
-        </div>
+            <img id="img_carrinho" src="css/images/product20-512.png"></img>
+            <a href="login.jsp">
+                <img border="0" src="css/images/logout.png" id="logout">
+            </a>`
+            <br>
+            <br>
+            <ul class="nav nav-tabs nav-justified">
+                <li class="active"><a data-toggle="tab" href="#usuario">Usuário</a></li>
+                <li><a data-toggle="tab" href="#filial">Filial</a></li>
+                <li><a data-toggle="tab" href="#produto">Produto</a></li>
+                <li><a data-toggle="tab" href="#estoque">Estoque</a></li>
+                <li><a data-toggle="tab" href="#vendas">Vendas</a></li>
+                <li><a data-toggle="tab" href="#registro">Registrar Venda</a></li>
+            </ul>
 
-        <!-- Aba usuario -->
-        <div id="textaba1" class="divsel">
-            <iframe src="abaUsuario.jsp" width="100%" height="100%"></iframe>     
-        </div>
+            <div class="divsel">
 
-        <!-- Aba filial -->
-        <div id="textaba2" class="divunsel">
-            <iframe src="abaFilial.jsp" width="100%" height="100%"></iframe>
+                <div class="tab-content">
+                    <div id="usuario" class="tab-pane fade in active">
+                        <body class="abaFrame">
+                            <iframe src="abaUsuario.jsp" frameborder="0"></iframe>
+                        </body>
+                    </div>
+                    <div id="filial" class="tab-pane fade">
+                        <body class="abaFrame">
+                            <iframe src="abaFilial.jsp" frameborder="0"></iframe>
+                        </body>
+                    </div>
+                    <div id="produto" class="tab-pane fade">
+                        <body class="abaFrame">
+                            <iframe src="abaProduto.jsp" frameborder="0"></iframe>
+                        </body>
+                    </div>
+                    <div id="estoque" class="tab-pane fade">
+                        <body class="abaFrame">
+                            <iframe src="abaEstoque.jsp" frameborder="0"></iframe>
+                        </body>
+                    </div>
+                    <div id="vendas" class="tab-pane fade">
+                        <body class="abaFrame">
+                            <iframe src="abaVendas.jsp" frameborder="0"></iframe>
+                        </body>
+                    </div>
+                    <div id="registro" class="tab-pane fade">
+                        <body class="abaFrame">
+                            <iframe src="registroVendas.jsp" frameborder="0"></iframe>
+                        </body>
+                    </div>
+                </div>
+            </div>
         </div>
-
-
-        <!-- Aba produtos -->
-        <div id="textaba3" class="divunsel">
-        <iframe src="abaProduto.jsp" width="100%" height="100%"></iframe>       
-        </div>
-        <div id="textaba4" class="divunsel">Conteúdo da aba4 aqui</div>
-        <div id="textaba5" class="divunsel">Conteúdo da aba5 aqui</div>
-        <div id="textaba6" class="divunsel">Conteúdo da aba6 aqui</div>
-    </body>
 </html>

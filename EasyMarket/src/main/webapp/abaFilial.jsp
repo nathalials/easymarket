@@ -21,7 +21,7 @@
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#FilialTable').jtable({
-                    title: 'Lista Filiais',
+                    title: 'Filiais',
                     actions: {
                         listAction: 'ControllerFilial?action=list',
                         createAction: 'ControllerFilial?action=create',
