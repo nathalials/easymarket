@@ -52,7 +52,16 @@ public class ProdutoDAO extends DAO {
             stmt.setString(13, produto.getAtivo());
 
             stmt.executeUpdate();
-            System.out.println("Registro incluido com sucesso.");
+            
+            sql = "SELECT MAX(ID_PRODUTO) ID_PRODUTO FROM TB_PRODUTO";            
+            stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while(rs.next())
+            {
+                produto.setIdProduto(rs.getInt("ID_PRODUTO"));
+            }
+            //System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
