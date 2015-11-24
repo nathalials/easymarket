@@ -137,9 +137,6 @@
 
     </head>
     <body>
-        <div style="width: 100%; text-align: center; height: 100%;">
-
-            <div id="ProdutoTable"></div>
-        </div>
+        
     </body>
 </html>
