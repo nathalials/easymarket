@@ -33,7 +33,8 @@
                         <input type="submit" onclick="Enviar();" value="Entrar" />
                     </p>
                 </form>
-            </div>
+            </div><br>  
+            <p class="msgErro">Login ou Senha incorreto. Tente novamente.</p>
 
             <img id="img_online" src="css/images/online-shopping-1600-clr.png"></img>
 

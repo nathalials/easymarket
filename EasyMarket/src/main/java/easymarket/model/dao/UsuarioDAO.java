@@ -5,6 +5,7 @@
  */
 package easymarket.model.dao;
 
+import easymarket.model.pojo.Produto;
 import easymarket.model.pojo.Usuario;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -44,15 +45,15 @@ public class UsuarioDAO extends DAO {
             stmt.setString(7, usuario.getAtivo());
 
             stmt.executeUpdate();
-            
+
             sql = "SELECT MAX(ID_USUARIO) FROM TB_USUARIO";
             stmt = conn.prepareStatement(sql);
             ResultSet rs = stmt.executeQuery();
-            
-            while (rs.next()){
-                usuario.setIdUsuario(rs.getInt("ID_USUARIO"));               
+
+            while (rs.next()) {
+                usuario.setIdUsuario(rs.getInt("ID_USUARIO"));
             }
-            
+
             System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {
@@ -230,5 +231,46 @@ public class UsuarioDAO extends DAO {
         rs.close();
         stmt.close();
         return usuarios;
+    }
+
+    public String buscarUsuario(String login, String senha) throws SQLException {
+
+        String cargo = null, loginConsulta = null, senhaConsulta = null;
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        //select * from produto where idproduto = ?  
+        String sql = "SELECT * FROM TB_USUARIO WHERE LG_USUARIO = ?";
+        //Select * from usuario where login='"+ login + "'"
+
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setString(1, login);
+            rs = stmt.executeQuery();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        while (rs.next()) {
+            // armazena o conte�do da coluna login numa vari�vel
+            loginConsulta = rs.getString("LG_USUARIO");
+            senhaConsulta = rs.getString("PS_USUARIO");
+            cargo = rs.getString("CARGO");
+
+        }
+
+        // se a senha e usu�rio passados por parametro forem iguais a do banco,
+        // retorna o tipo de cargo do usu�rio
+        if (login.equals(loginConsulta)
+                && senha.equals(senhaConsulta)) {
+            return cargo;
+        } else {
+            // se n�o for igual, deixa a permiss�o como nula
+            cargo = null;
+        }
+        return cargo;
+
     }
 }

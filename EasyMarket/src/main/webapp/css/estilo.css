@@ -40,7 +40,7 @@ iframe {
 
 .login{
     text-align: center;
-    padding-top: 10%;
+    padding-top: 7%;
 }
 
 .dados{
@@ -48,6 +48,11 @@ iframe {
     margin-left : 9px;
 
 }
+.msgErro{
+    color: #FFFFFF;
+    text-align: center;
+}
+    
 
 .campo{
     width:180px;

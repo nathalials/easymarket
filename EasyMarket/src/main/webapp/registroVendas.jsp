@@ -151,9 +151,6 @@
             <label id="logo_easymarket">EasyMarket</label>
             <img id="img_carrinho" src="css/images/product20-512.png"></img>
 
-
-
-
             <div class="compraProduto">
                 <form name="form_consultaProduto" action="ConsultaProduto" method="post" class="registroProduto">
                     <br>
