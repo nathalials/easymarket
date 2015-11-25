@@ -43,6 +43,14 @@ public class FilialDAO extends DAO {
             stmt.setString(9, filial.getAtivo());
 
             stmt.executeUpdate();
+            
+            sql = "SELECT MAX(ID_FILIAL) FROM TB_FILIAL";
+            stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()){
+                filial.setidFilial(rs.getInt("ID_FILIAL"));               
+            }
             System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {

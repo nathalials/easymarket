@@ -44,6 +44,15 @@ public class UsuarioDAO extends DAO {
             stmt.setString(7, usuario.getAtivo());
 
             stmt.executeUpdate();
+            
+            sql = "SELECT MAX(ID_USUARIO) FROM TB_USUARIO";
+            stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+            
+            while (rs.next()){
+                usuario.setIdUsuario(rs.getInt("ID_USUARIO"));               
+            }
+            
             System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {

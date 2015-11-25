@@ -1,4 +1,4 @@
-
+    
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -61,7 +61,7 @@
                     </div>
                     <div id="registro" class="tab-pane fade">
                         <body class="abaFrame">
-                            <iframe src="registroVendas.jsp" frameborder="0"></iframe>
+                            <iframe src="abaRegistroVendas.jsp" frameborder="0"></iframe>
                         </body>
                     </div>
                 </div>
