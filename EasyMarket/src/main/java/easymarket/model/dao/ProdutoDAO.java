@@ -31,8 +31,7 @@ public class ProdutoDAO extends DAO {
         String sql = "INSERT INTO TB_PRODUTO (NOME,  MARCA, FORNECEDOR, CODIGODEBARRA, LOTE, "
                 + "DATAVALIDADE, SETOR, PRECOCOMPRA, PRECOVENDA, ESTOQUEMINIMO, ESTOQUEMAXIMO, QTDATUAL, ATIVO) "
                 + "VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?,?,?,?)";
-        
-        
+
         try {
 
             conn = obterConexao();
@@ -205,5 +204,48 @@ public class ProdutoDAO extends DAO {
         rs.close();
         stmt.close();
         return produtos;
+    }
+
+    public Produto buscarProduto(long codigoDeBarras) throws SQLException {
+
+        PreparedStatement stmt = null;
+        Connection conn = null;
+        ResultSet rs = null;
+        //select * from produto where idproduto = ?  
+        String sql = "SELECT * FROM TB_PRODUTO WHERE CODIGODEBARRA = ?";
+        Produto produto = new Produto();
+
+        try {
+
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt.setLong(1, codigoDeBarras);
+            rs = stmt.executeQuery();
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        while (rs.next()) {
+
+            produto.setIdProduto(rs.getInt("ID_PRODUTO"));
+            produto.setNome(rs.getString("NOME"));
+            produto.setMarca(rs.getString("MARCA"));
+            produto.setFornecedor(rs.getString("FORNECEDOR"));;
+            produto.setCodigoDeBarras(rs.getLong("CODIGODEBARRA"));
+            produto.setLote(rs.getLong("LOTE"));
+            produto.setDataValidade(rs.getString("DATAVALIDADE"));
+            produto.setSetor(rs.getString("SETOR"));
+            produto.setPrecoCompra(rs.getFloat("PRECOCOMPRA"));
+            produto.setPrecoVenda(rs.getFloat("PRECOVENDA"));
+            produto.setEstoqueMinimo(rs.getInt("ESTOQUEMINIMO"));
+            produto.setEstoqueMaximo(rs.getInt("ESTOQUEMAXIMO"));
+            produto.setQtdAtual(rs.getInt("QTDATUAL"));
+            produto.setAtivo(rs.getString("ATIVO"));
+
+        }
+        rs.close();
+        stmt.close();
+        return produto;
+
     }
 }
