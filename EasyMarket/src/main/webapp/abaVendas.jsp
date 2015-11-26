@@ -11,16 +11,12 @@
         <script src="js/jquery.jtable.js" type="text/javascript"></script>
         <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
 
-
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#ProdutoTable').jtable({
                     title: 'Produtos',
                     actions: {
                         listAction: 'ControllerProduto?action=list',
-                        //createAction: 'ControllerProduto?action=create',
-                        //updateAction: 'ControllerProduto?action=update',
-                        //deleteAction: 'ControllerProduto?action=delete'
                     },
                     fields: {
                         idProduto: {
@@ -126,17 +122,12 @@
                             create: false
 
                         }
-
-
                     }
-         
                 });
                 $('#ProdutoTable').jtable('load');
             });
         </script>
-
     </head>
     <body>
-        
     </body>
 </html>

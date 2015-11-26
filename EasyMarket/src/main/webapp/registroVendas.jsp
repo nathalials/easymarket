@@ -133,30 +133,23 @@
                             create: false
 
                         }
-
-
                     }
-
                 });
                 $('#CompraProdutoTable').jtable('load');
             });
         </script>
 
     </head>
-
     <body>
-
         <div id="aba"> 
-
             <label id="logo_easymarket">EasyMarket</label>
             <img id="img_carrinho" src="css/images/product20-512.png"></img>
-
             <div class="compraProduto">
                 <form name="form_consultaProduto" action="ConsultaProduto" method="post" class="registroProduto">
                     <br>
                     <label class="dadosRegistro">Código de Barras:</label><br>
                     <input type="text" name="codigoDeBarras" class="campo"/>
-                    <input type="submit" value="Buscar" id="botaoBuscar" onclick="javascript: form.action='ConsultaProduto  ';"/><br>
+                    <input type="submit" value="Buscar" id="botaoBuscar" onclick="javascript: form.action = 'ConsultaProduto  ';"/><br>
                     <label  class="dadosRegistro" for="nome">Nome:</label> <br>
                     <input value='<%=request.getAttribute("nome")%>' type="text" name="nome" readonly="readonly" />
                     <br><label class="dadosRegistro">Quantidade:</label><br>
@@ -165,12 +158,10 @@
                     <input value='<%=request.getAttribute("precoVenda")%>' type="text" class="input value2" readonly="readonly" >
                     <br><label class="dadosRegistro">Preço Total:</label><br>
                     <input type="text" disabled="disabled" id="result">
-                    <input type="submit" value="+" id="botaoBuscar" onclick="javascript: form.action='AdicionaProdutoVenda';"/>
-
+                    <input type="submit" value="+" id="botaoBuscar" onclick="javascript: form.action = 'AdicionaProdutoVenda';"/>
                 </form>
-            </div>
-                    
-                   <div id="CompraProdutoTable"></div>
+            </div>  
+            <div id="CompraProdutoTable"></div>
 
         </div>
         <script>

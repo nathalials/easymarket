@@ -96,7 +96,6 @@
 
     </head>
     <body>
-        <!--        <div style="width: 100%; text-align: center; height: 100%;">-->
         <div class="filtering">
             <form>
                 Nome: <input type="text" name="nome" id="nome" />   
@@ -104,8 +103,5 @@
             </form>
         </div>
         <div id="UserTable"></div>
-
-
-
     </body>
 </html>

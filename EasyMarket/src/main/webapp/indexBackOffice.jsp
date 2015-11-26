@@ -23,17 +23,17 @@
             <br>
             <br>
             <ul class="nav nav-tabs nav-justified">
-             
+
                 <li><a data-toggle="tab" href="#produto">Produto</a></li>
                 <li><a data-toggle="tab" href="#estoque">Estoque</a></li>
                 <li><a data-toggle="tab" href="#vendas">Vendas</a></li>
-                
+
             </ul>
 
             <div class="divsel">
 
                 <div class="tab-content">
-                  
+
                     <div id="produto" class="tab-pane fade">
                         <body class="abaFrame">
                             <iframe src="abaProduto.jsp" frameborder="0"></iframe>
@@ -49,7 +49,6 @@
                             <iframe src="abaVendas.jsp" frameborder="0"></iframe>
                         </body>
                     </div>
-              
                 </div>
             </div>
         </div>

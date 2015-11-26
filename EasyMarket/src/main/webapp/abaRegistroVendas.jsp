@@ -17,20 +17,14 @@
         <script src="js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
         <script src="js/jquery.jtable.js" type="text/javascript"></script>
         <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
-        
+
         <title>JSP Page</title>
-    </head>
-    <body>
-            <div id="logo_registroVendas">Registro de Vendas</div>
         <script type="text/javascript">
             $(document).ready(function () {
                 $('#ProdutoTable').jtable({
                     title: 'Produtos',
                     actions: {
                         listAction: 'ControllerProduto?action=list',
-                        //createAction: 'ControllerProduto?action=create',
-                        //updateAction: 'ControllerProduto?action=update',
-                        //deleteAction: 'ControllerProduto?action=delete'
                     },
                     fields: {
                         idProduto: {
@@ -54,7 +48,7 @@
                             list: true,
                             edit: false,
                             create: false
-                        },      
+                        },
                         qtdAtual: {
                             title: 'Qtd Atual',
                             width: '20%',
@@ -70,17 +64,13 @@
                             create: false
                         }
                     }
-         
+
                 });
                 $('#ProdutoTable').jtable('load');
             });
         </script>
-
     </head>
     <body>
-        <div style="width: 50%; text-align: center; height: 50%; position: relative; left:2%; top: 5%"><div style="width: 50%; text-align: center; height: 50%; position: relative; left:2%; top: 5%"></div>
-            <label>a tag para achar é tamanho no arquivo jquery.jtable</label>
-            <div id="ProdutoTable"></div>
-        </div>
+        <div id="ProdutoTable"></div>
     </body>
 </html>

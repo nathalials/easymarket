@@ -18,9 +18,6 @@
                     title: 'Produtos',
                     actions: {
                         listAction: 'ControllerProduto?action=list',
-                        //createAction: 'ControllerProduto?action=create',
-                        //updateAction: 'ControllerProduto?action=update',
-                        //deleteAction: 'ControllerProduto?action=delete'
                     },
                     fields: {
                         idProduto: {
@@ -126,10 +123,7 @@
                             create: false
 
                         }
-
-
                     }
-         
                 });
                 $('#ProdutoTable').jtable('load');
             });
@@ -137,9 +131,6 @@
 
     </head>
     <body>
-        <div style="width: 100%; text-align: center; height: 100%;">
-
-            <div id="ProdutoTable"></div>
-        </div>
+        <div id="ProdutoTable"></div>
     </body>
 </html>
