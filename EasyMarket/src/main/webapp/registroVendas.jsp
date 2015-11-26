@@ -71,6 +71,21 @@
                 });
             })
 
+            function validateForm() {
+                var x = document.forms["form_consultaProduto"]["codigoDeBarras"].value;
+                if (x == null || x == "" || x < 0) {
+                    alert("Favor preencher um código de barras");
+                    return false;
+                }
+                var y = document.forms["form_consultaProduto"]["qtdVendida"].value;
+                if (y == null || y < 0) {
+                    alert("Favor preencher uma quantidade válida");
+                    return false;
+                }
+            }
+
+       
+
         </script>
 
     </head>
@@ -84,10 +99,10 @@
 
 
         <div class="compraProduto">
-            <form name="form_consultaProduto" action="ConsultaProduto" method="post" class="registroProduto">
+            <form name="form_consultaProduto" action="ConsultaProduto" method="post" class="registroProduto"  onsubmit="return validateForm()">
                 <br>
                 <label class="dadosRegistro">Código de Barras:</label><br>
-                <input type="text" name="codigoDeBarras" class="campo"/>
+                <input type="text" name="codigoDeBarras" class="campo" />
                 <input type="submit" value="Buscar" id="botaoBuscar" onclick="javascript: form.action = 'ConsultaProduto?action=save';"/><br>
                 <label  class="dadosRegistro" for="nome">Nome:</label> <br>
                 <input value='<%=request.getAttribute("nome")%>' type="text" name="nome" readonly="readonly" />
@@ -97,18 +112,18 @@
                 <input value='<%=request.getAttribute("precoVenda")%>' type="text" class="input value2" readonly="readonly" >
                 <br><label class="dadosRegistro">Preço Total:</label><br>
                 <input type="text" disabled="disabled" id="result" name="precoTotal">
-                <input type="submit" value="+" id="botaoAdicionar" onclick="javascript: form.action = 'ConsultaProduto?action=add';"/>
-                <input type="submit" value="FECHAR VENDA" id="botaoFecharVenda" onclick="javascript: form.action = 'ConsultaProduto?action=fecharVenda  ';"/>
+                <input type="submit" value="REGISTRAR" id="botaoAdicionar" onclick="javascript: form.action = 'ConsultaProduto?action=add';"/>
+              
 
             </form>
         </div>
 
 
-<!--
-        <div id="tabela" class="tabelaProdutos">
-
-            <iframe src="produtoVendidoTable.jsp" frameborder="0" style="top: 30%; left: 50%; width: 50%; height: 40%;"></iframe>
-
-        </div>-->
+        <!--
+                <div id="tabela" class="tabelaProdutos">
+        
+                    <iframe src="produtoVendidoTable.jsp" frameborder="0" style="top: 30%; left: 50%; width: 50%; height: 40%;"></iframe>
+        
+                </div>-->
     </body>
 </html>
