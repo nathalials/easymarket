@@ -5,14 +5,27 @@
  */
 package easymarket.controller;
 
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import easymarket.model.dao.FilialDAO;
 import easymarket.model.dao.ProdutoDAO;
+import easymarket.model.dao.VendaDAO;
+import easymarket.model.pojo.Filial;
 import easymarket.model.pojo.Produto;
+import easymarket.model.pojo.Venda;
+import easymarket.model.pojo.Venda_Produtos;
 import java.io.IOException;
 import java.io.PrintWriter;
 import static java.lang.System.out;
 import java.sql.SQLException;
+import java.time.Clock;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -25,6 +38,12 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "ConsultaProduto", urlPatterns = {"/ConsultaProduto"})
 public class ConsultaProduto extends HttpServlet {
+
+    private static final long serialVersionUID = 1L;
+    private HashMap<String, Object> JSONROOT = new HashMap<String, Object>();
+
+    private VendaDAO dao;
+    public Produto produto = new Produto();
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -79,42 +98,101 @@ public class ConsultaProduto extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
 
-        long codDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
-
+        String forward = "";
         ProdutoDAO dao = new ProdutoDAO();
-        Produto produto = new Produto();
-        try {
-            produto = dao.buscarProduto(codDeBarras);
 
-            //processRequest(request, response);
-        } catch (SQLException ex) {
-            Logger.getLogger(ConsultaProduto.class.getName()).log(Level.SEVERE, null, ex);
+        //float precoVendaProduto = 0;
+        Gson gson = new GsonBuilder().setPrettyPrinting().create();
+        response.setContentType("application/json");
+        List<Venda> listaVenda = new ArrayList<Venda>();
+        List<Venda_Produtos> listaVenda_Produtos = new ArrayList<Venda_Produtos>();
+        //List<Produto> listaProdutos = new ArrayList<Produto>();
+        VendaDAO novoVenda = new VendaDAO();
+        Venda venda = new Venda();
+        // Venda_Produtos venda_produtos = new Venda_Produtos();
+        String action = request.getParameter("action");
+        int qtdTotalProdutos = 0;
+        float valorTotalVenda = 0;
+
+        if (action != null) {
+            try {
+                if (action.equals("list")) {
+
+                    listaVenda_Produtos = novoVenda.listaProdutosVendidos();
+
+                    JSONROOT.put("Result", "OK");
+                    JSONROOT.put("Records", listaVenda_Produtos);
+
+                    // Convert Java Object to Json
+                    String jsonArray = gson.toJson(JSONROOT);
+
+                    response.getWriter().print(jsonArray);
+                } else if (action.equalsIgnoreCase("save")) {
+
+                    long codDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
+
+                    try {
+                        produto = dao.buscarProduto(codDeBarras);
+                        //precoVendaProduto = produto.getPrecoVenda();
+
+                        //processRequest(request, response);
+                    } catch (SQLException ex) {
+                        Logger.getLogger(ConsultaProduto.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+
+                    //precoVendaProduto = produto.getPrecoVenda();
+                    request.setAttribute("codigoDeBarras", produto.getCodigoDeBarras());
+                    request.setAttribute("nome", produto.getNome());
+                    request.setAttribute("precoVenda", produto.getPrecoVenda());
+
+                    //int userId = Integer.parseInt(request.getParameter("userId"));
+                    //dao.deleteUser(userId);
+                    forward = "registroVendas.jsp";
+
+                    //request.setAttribute("users", dao.getAllUsers());
+                } else if (action.equalsIgnoreCase("add")) {
+
+                    String status = "F";
+
+                    int qtdVendida = Integer.parseInt(request.getParameter("qtdVendida"));
+                    //float totalProduto = qtdVendida * produto.getPrecoVenda();
+                    //result
+                    float precoVendaProduto = produto.getPrecoVenda();
+                    float totalProduto = precoVendaProduto * qtdVendida;
+                    //Venda venda = new Venda(totalProduto, qtdVendida, status);
+                    venda.setQtd_total(qtdVendida);
+                    venda.setValorTotal(totalProduto);
+                    venda.setStatus(status);
+                    novoVenda.incluirVenda(venda);
+
+                    Venda_Produtos venda_produtos = new Venda_Produtos();
+                    venda_produtos.setidVenda(venda.getidVenda());
+                    venda_produtos.setId_produto(produto.getIdProduto());
+                    venda_produtos.setQtd_vendida(qtdVendida);
+                    venda_produtos.setValor_venda(totalProduto);
+                    novoVenda.incluirVendaProduto(venda_produtos);
+                    qtdTotalProdutos = qtdTotalProdutos + venda_produtos.getQtd_vendida();
+                    valorTotalVenda = (float) (valorTotalVenda + venda_produtos.getValor_venda());
+
+                    forward = "registroVendas.jsp";
+
+                } else if (action.equalsIgnoreCase("fecharVenda")) {
+
+                    novoVenda.AlterarVenda(valorTotalVenda, qtdTotalProdutos, venda.getidVenda());
+                    forward = "registroVendas.jsp";
+
+                }
+
+                RequestDispatcher view = request.getRequestDispatcher(forward);
+                view.forward(request, response);
+
+            } catch (Exception ex) {
+                JSONROOT.put("Result", "ERROR");
+                JSONROOT.put("Message", ex.getMessage());
+                String error = gson.toJson(JSONROOT);
+                response.getWriter().print(error);
+            }
         }
-        
-
-        //request.setAttribute("idproduto", produto.getIdProduto());
-        request.setAttribute("nome", produto.getNome());
-        //request.setAttribute("marca", produto.getMarca());
-        //request.setAttribute("fornecedor", produto.getFornecedor());
-        //request.setAttribute("dataValidade", produto.getDataValidade());
-        // request.setAttribute("preco", produto.getPrecoCompra());
-        //request.setAttribute("codigodebarras", produto.getCodigoDeBarras());
-        //request.setAttribute("qtidade", produto.getQtidade());
-        request.setAttribute("precoVenda", produto.getPrecoVenda());
-       
-        request.getRequestDispatcher("registroVendas.jsp").forward(request, response);
-        
-        
     }
-
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
-    @Override
-    public String getServletInfo() {
-        return "Short description";
-    }// </editor-fold>
 
 }

@@ -219,8 +219,7 @@ public class ProdutoDAO extends DAO {
 
         PreparedStatement stmt = null;
         Connection conn = null;
-        ResultSet rs = null;
-        //select * from produto where idproduto = ?  
+        ResultSet rs = null; 
         String sql = "SELECT * FROM TB_PRODUTO WHERE CODIGODEBARRA = ?";
         Produto produto = new Produto();
 

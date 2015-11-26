@@ -21,159 +21,52 @@
 
         <script type="text/javascript">
             $(document).ready(function () {
-                $('#CompraProdutoTable').jtable({
+                $('#ProdutoVendidoTable').jtable({
                     title: 'Produtos',
                     actions: {
-                        listAction: 'ControllerProduto?action=list',
+                        listAction: 'ConsultaProduto?action=list',
                         //createAction: 'ControllerProduto?action=create',
                         //updateAction: 'ControllerProduto?action=update',
                         //deleteAction: 'ControllerProduto?action=delete'
                     },
                     fields: {
-                        idProduto: {
-                            title: 'Id',
+                        id_venda: {
+                            title: 'Id Venda',
                             width: '30%',
                             key: true,
                             list: false,
                             edit: false,
                             create: false
                         },
-                        nome: {
-                            title: 'Nome',
+                        id_produto: {
+                            title: 'Id Produto',
                             width: '30%',
                             list: true,
                             edit: false,
                             create: false
                         },
-                        marca: {
-                            title: 'Marca',
+                        qtd_vendida: {
+                            title: 'Qtd Vendida',
                             width: '30%',
                             list: true,
                             edit: false,
                             create: false
                         },
-                        codigoDeBarras: {
-                            title: 'Cód Barras',
+                        valor_venda: {
+                            title: 'Total Venda',
                             width: '20%',
                             list: true,
                             edit: false,
                             create: false
-                        },
-                        lote: {
-                            title: 'Lote',
-                            width: '20%',
-                            list: false,
-                            edit: false,
-                            create: false
-                        },
-                        dataValidade: {
-                            title: 'Data Validade',
-                            width: '20%',
-                            list: false,
-                            edit: false,
-                            create: false,
-                            type: 'date'
-                        },
-                        setor: {
-                            title: 'Setor',
-                            width: '20%',
-                            list: false,
-                            edit: false,
-                            create: false,
-                            options: {"Alimentos": 'Alimentos', "Higiene": 'Higiene', "Limpeza": 'Limpeza', "Bebidas": 'Bebidas'}
-
-                        },
-                        precoCompra: {
-                            title: 'Preço Compra',
-                            width: '20%',
-                            list: false,
-                            edit: false,
-                            create: false
-
-                        },
-                        precoVenda: {
-                            title: 'Preço Unitário',
-                            width: '20%',
-                            list: true,
-                            edit: false,
-                            create: false
-
-                        },
-                        estoqueMinimo: {
-                            title: 'Estq Mín',
-                            width: '20%',
-                            list: false,
-                            edit: false,
-                            create: false
-
-                        },
-                        estoqueMaximo: {
-                            title: 'Estq Máx',
-                            width: '20%',
-                            list: false,
-                            edit: false,
-                            create: false
-
-                        },
-                        qtdAtual: {
-                            title: 'Qtd Atual',
-                            width: '20%',
-                            list: false,
-                            edit: false,
-                            create: false
-
-                        },
-                        ativo: {
-                            title: 'Status',
-                            width: '20%',
-                            type: 'radiobutton',
-                            options: {"S": 'Ativado', "N": 'Desativado'},
-                            list: false,
-                            edit: false,
-                            create: false
-
                         }
 
 
                     }
 
                 });
-                $('#CompraProdutoTable').jtable('load');
+                $('#ProdutoVendidoTable').jtable('load');
             });
-        </script>
 
-    </head>
-
-    <body>
-
-        <div id="aba"> 
-
-            <label id="logo_easymarket">EasyMarket</label>
-            <img id="img_carrinho" src="css/images/product20-512.png"></img>
-
-            <div class="compraProduto">
-                <form name="form_consultaProduto" action="ConsultaProduto" method="post" class="registroProduto">
-                    <br>
-                    <label class="dadosRegistro">Código de Barras:</label><br>
-                    <input type="text" name="codigoDeBarras" class="campo"/>
-                    <input type="submit" value="Buscar" id="botaoBuscar" onclick="javascript: form.action='ConsultaProduto  ';"/><br>
-                    <label  class="dadosRegistro" for="nome">Nome:</label> <br>
-                    <input value='<%=request.getAttribute("nome")%>' type="text" name="nome" readonly="readonly" />
-                    <br><label class="dadosRegistro">Quantidade:</label><br>
-                    <input type="text" class="input value1" name="qtdVendida"><br>
-                    <label  class="dadosRegistro" for="precoVenda">Preço Unitário:</label> <br> 
-                    <input value='<%=request.getAttribute("precoVenda")%>' type="text" class="input value2" readonly="readonly" >
-                    <br><label class="dadosRegistro">Preço Total:</label><br>
-                    <input type="text" disabled="disabled" id="result">
-                    <input type="submit" value="+" id="botaoBuscar" onclick="javascript: form.action='AdicionaProdutoVenda';"/>
-
-                </form>
-            </div>
-                    
-                   <div id="CompraProdutoTable"></div>
-
-        </div>
-        <script>
             $(document).ready(function () {
                 $(".input").keyup(function () {
                     var val1 = +$(".value1").val();
@@ -182,4 +75,38 @@
                 });
             });
         </script>
+
+    </head>
+
+    <body style="background-color:#EBEBEB;">
+
+
+        <div class="compraProduto">
+            <form name="form_consultaProduto" action="ConsultaProduto" method="post" class="registroProduto">
+                <br>
+                <label class="dadosRegistro">Código de Barras:</label><br>
+                <input type="text" name="codigoDeBarras" class="campo"/>
+                <input type="submit" value="Buscar" id="botaoBuscar" onclick="javascript: form.action = 'ConsultaProduto?action=save';"/><br>
+                <label  class="dadosRegistro" for="nome">Nome:</label> <br>
+                <input value='<%=request.getAttribute("nome")%>' type="text" name="nome" readonly="readonly" />
+                <br><label class="dadosRegistro">Quantidade:</label><br>
+                <input type="text" class="input value1" name="qtdVendida"><br>
+                <label  class="dadosRegistro" for="precoVenda">Preço Unitário:</label> <br> 
+                <input value='<%=request.getAttribute("precoVenda")%>' type="text" class="input value2" readonly="readonly" >
+                <br><label class="dadosRegistro">Preço Total:</label><br>
+                <input type="text" disabled="disabled" id="result" name="precoTotal">
+                <input type="submit" value="+" id="botaoAdicionar" onclick="javascript: form.action = 'ConsultaProduto?action=add';"/>
+
+            </form>
+        </div>
+
+
+        <input type="submit" value="FECHAR VENDA" id="botaoFecharVenda" onclick="javascript: form.action = 'ConsultaProduto?action=fecharVenda';"/>
+
+        <div id="tabela" class="tabelaProdutos">
+            
+            <iframe src="produtoVendidoTable.jsp" frameborder="0" style="top: 30%; left: 50%; width: 50%; height: 40%;"></iframe>
+           
+        </div>
+    </body>
 </html>

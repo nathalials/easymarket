@@ -6,6 +6,8 @@
 package easymarket.model.dao;
 
 import easymarket.model.pojo.Usuario;
+import easymarket.model.pojo.Venda;
+import easymarket.model.pojo.Venda_Produtos;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,138 +23,176 @@ import java.util.logging.Logger;
  * @author Equipe F5
  */
 public class VendaDAO extends DAO {
-  
 
-    public void incluirUsuario(Usuario usuario) {
+    public void incluirVenda(Venda venda) {
 
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "INSERT INTO TB_VENDA (QTDTOTALVENDIDA, PRECOTOTALVENDA, PS_USUARIO, EMAIL, CPF, CARGO, ATIVO) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String sql = "INSERT INTO TB_VENDA(QTD_TOTAL,VALOR_TOTAL,STATUS) VALUES(?,?,?)";
         try {
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, usuario.getNome());
-            stmt.setString(2, usuario.getLogin());
-            stmt.setString(3, usuario.getSenha());
-            stmt.setString(4, usuario.getEmail());
-            stmt.setString(5, usuario.getCpf());
-            stmt.setString(6, usuario.getCargo());
-            stmt.setString(7, usuario.getAtivo());
+            stmt.setInt(1, venda.getQtd_total());
+            stmt.setDouble(2, venda.getValorTotal());
+            stmt.setString(3, venda.getStatus());
+
+            stmt.executeUpdate();
+
+            sql = "SELECT MAX(ID_VENDA) ID_VENDA FROM TB_VENDA";
+            stmt = conn.prepareStatement(sql);
+            ResultSet rs = stmt.executeQuery();
+
+            while (rs.next()) {
+                venda.setidVenda(rs.getInt("ID_VENDA"));
+            }
+            
+            System.out.println("Registro incluido com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
+    }
+
+    public void AlterarVenda(double valor_total, int qtd_total, int id_venda) {
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "UPDATE TB_VENDA SET VALOR_TOTAL=?,QTD_TOTAL=? WHERE ID_VENDA=?";
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
+            stmt.setDouble(1, valor_total);
+            stmt.setInt(2, qtd_total);
+            stmt.setInt(3, id_venda);
 
             stmt.executeUpdate();
             System.out.println("Registro incluido com sucesso.");
 
         } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
 
-    public void AlterarUsuario(String nome, String login, String senha, String email, String cpf, String cargo, String ativo, int IdUsuario) {
+    /*
+     public List<Filial> getLista()  {
+
+     PreparedStatement stmt = null;
+     Connection conn = null;
+     ResultSet rs = null;
+     String sql = "SELECT * FROM TB_FILIAL";
+
+     try {
+     conn = obterConexao();
+     stmt = conn.prepareStatement(sql);
+     rs = stmt.executeQuery();
+     } catch (ClassNotFoundException ex) {
+     Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+     }
+
+     List<Filial> filiais = new ArrayList<Filial>();
+     while (rs.next()) {
+     //Criando um objeto tipo Contato  
+     Filial filial = new Filial();
+     filial.setidFilial(rs.getInt("ID_FILIAL"));
+     filial.setRazaoSocial(rs.getString("RAZAOSOCIAL"));
+     filial.setCnpj(rs.getLong("CNPJ"));
+     filial.setEndereco(rs.getString("ENDERECO"));
+     filial.setCep(rs.getLong("CEP"));
+     filial.setBairro(rs.getString("BAIRRO"));
+     filial.setCidade(rs.getString("CIDADE"));
+     filial.setEstado(rs.getString("ESTADO"));
+     filial.setTelefone(rs.getLong("TELEFONE"));
+     filial.setAtivo(rs.getString("ATIVO"));
+
+     //Adicionando Valores a lista  
+     filiais.add(filial);
+     }
+     rs.close();
+     stmt.close();
+     return filiais;
+     }
+     */
+    public void incluirVendaProduto(Venda_Produtos vendaprodutos) {
 
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_USUARIO SET NM_USUARIO=?, LG_USUARIO=?,PS_USUARIO=?,EMAIL=?,CPF=?,CARGO=?, ATIVO=? WHERE ID_USUARIO=?";
+        String sql = "INSERT INTO VENDA_PRODUTOS(ID_VENDA,ID_PRODUTO,QTD_VENDIDA,VALOR_VENDA) VALUES(?,?,?,?)";
         try {
 
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nome);
-            stmt.setString(2, login);
-            stmt.setString(3, senha);
-            stmt.setString(4, email);
-            stmt.setString(5, cpf);
-            stmt.setString(6, cargo);
-            stmt.setString(7, ativo);
-            stmt.setInt(7, IdUsuario);
+            stmt.setInt(1, vendaprodutos.getidVenda());
+            stmt.setInt(2, vendaprodutos.getId_Produto());
+            stmt.setInt(3, vendaprodutos.getQtd_vendida());
+            stmt.setDouble(4, vendaprodutos.getValor_venda());
 
             stmt.executeUpdate();
-            System.out.println("Registro incluido com sucesso.");
-
         } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
         } finally {
             if (stmt != null) {
                 try {
                     stmt.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             if (conn != null) {
                 try {
                     conn.close();
                 } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }
     }
-
-    public void DesativarUsuario(int idUsuario) {
-
-        PreparedStatement stmt = null;
-        Connection conn = null;
-
-        String sql = "UPDATE TB_USUARIO SET ATIVO='N' WHERE ID_USUARIO=?";
-        try {
-
-            conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, idUsuario);
-
-            stmt.executeUpdate();
-            //System.out.println("Registro incluido com sucesso.");
-
-        } catch (SQLException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        } finally {
-            if (stmt != null) {
-                try {
-                    stmt.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-            if (conn != null) {
-                try {
-                    conn.close();
-                } catch (SQLException ex) {
-                    Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
-    }
-
-    public List<Usuario> getLista() throws SQLException {
+    
+    public List<Venda_Produtos> listaProdutosVendidos() throws SQLException {
 
         PreparedStatement stmt = null;
         Connection conn = null;
         ResultSet rs = null;
-        String sql = "SELECT * FROM TB_USUARIO";
+        String sql = "SELECT * FROM VENDA_PRODUTOS";
 
         try {
             conn = obterConexao();
@@ -162,62 +202,22 @@ public class VendaDAO extends DAO {
             Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        List<Usuario> usuarios = new ArrayList<Usuario>();
+        List<Venda_Produtos> produtosVendidos = new ArrayList<Venda_Produtos>();
         while (rs.next()) {
             //Criando um objeto tipo Contato  
-            Usuario usuario = new Usuario();
-            usuario.setIdUsuario(rs.getInt("ID_USUARIO"));
-            usuario.setNome(rs.getString("NM_USUARIO"));
-            usuario.setLogin(rs.getString("LG_USUARIO"));
-            usuario.setSenha(rs.getString("PS_USUARIO"));
-            usuario.setEmail(rs.getString("EMAIL"));
-            usuario.setCpf(rs.getString("CPF"));
-            usuario.setCargo(rs.getString("CARGO"));
-            usuario.setAtivo(rs.getString("ATIVO"));
+            Venda_Produtos venda_produto = new Venda_Produtos();
+            venda_produto.setidVenda(rs.getInt("ID_VENDA"));
+            venda_produto.setId_produto(rs.getInt("ID_PRODUTO"));
+            venda_produto.setQtd_vendida(rs.getInt("QTD_VENDIDA"));
+            venda_produto.setValor_venda(rs.getDouble("VALOR_VENDA"));
 
-            usuarios.add(usuario);
+            produtosVendidos.add(venda_produto);
 
             //Adicionando Valores a lista  
         }
         rs.close();
         stmt.close();
-        return usuarios;
+        return produtosVendidos;
     }
 
-    public List<Usuario> getListaFilter(String nome) throws SQLException {
-
-        PreparedStatement stmt = null;
-        Connection conn = null;
-        ResultSet rs = null;
-        String sql = "SELECT * FROM TB_USUARIO WHERE NM_USUARIO =?";
-
-        try {
-            conn = obterConexao();
-            stmt = conn.prepareStatement(sql);
-            stmt.setString(1, nome);
-            rs = stmt.executeQuery();
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(UsuarioDAO.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        List<Usuario> usuarios = new ArrayList<Usuario>();
-        while (rs.next()) {
-            //Criando um objeto tipo Contato  
-            Usuario usuario = new Usuario();
-            usuario.setIdUsuario(rs.getInt("ID_USUARIO"));
-            usuario.setNome(rs.getString("NM_USUARIO"));
-            usuario.setLogin(rs.getString("LG_USUARIO"));
-            usuario.setSenha(rs.getString("PS_USUARIO"));
-            usuario.setEmail(rs.getString("EMAIL"));
-            usuario.setCpf(rs.getString("CPF"));
-            usuario.setCargo(rs.getString("CARGO"));
-            usuario.setAtivo(rs.getString("ATIVO"));
-
-            usuarios.add(usuario);
-
-        }
-        rs.close();
-        stmt.close();
-        return usuarios;
-    }
 }

@@ -3,100 +3,65 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package easymarket.model.pojo;
 
-import java.util.ArrayList;
+package easymarket.model.pojo;
 
 /**
  *
- * @author nliggia-ibm
+ * @author Anderson
  */
 public class Venda {
+    private int id_venda;
+    private int qtd_total;
+    private double valor_total;
+    private String status;
     
-    private int idVenda;
-    private int idProduto;
-    private int qtdTotalVendida;
-    private float precoTotalVenda;
-    String dataVenda;
-    ArrayList<Produto> produtosVendidos;
+    
+    public Venda(double _valor_total, int _qtd_total, String _status){
+        this.valor_total = _valor_total;
+        this.qtd_total = _qtd_total;
+        this.status = _status;
+    }
     
     public Venda(){
-        this.produtosVendidos = new ArrayList<Produto>();
         
     }
 
-       
-  
-    /**
-     * @return the idVenda
-     */
-    public int getIdVenda() {
-        return idVenda;
-    }
-
-    /**
-     * @param idVenda the idVenda to set
-     */
-    public void setIdVenda(int idVenda) {
-        this.idVenda = idVenda;
-    }
-
-    /**
-     * @return the idProduto
-     */
-    public int getIdProduto() {
-        return idProduto;
-    }
-
-    /**
-     * @param idProduto the idProduto to set
-     */
-    public void setIdProduto(int idProduto) {
-        this.idProduto = idProduto;
-    }
-
-    /**
-     * @return the qtdTotalVendida
-     */
-    public int getQtdTotalVendida() {
-        return qtdTotalVendida;
-    }
-
-    /**
-     * @param qtdTotalVendida the qtdTotalVendida to set
-     */
-    public void setQtdTotalVendida(int qtdTotalVendida) {
-        this.qtdTotalVendida = qtdTotalVendida;
-    }
-
-    /**
-     * @return the precoTotalVenda
-     */
-    public float getPrecoTotalVenda() {
-        return precoTotalVenda;
-    }
-
-    /**
-     * @param precoTotalVenda the precoTotalVenda to set
-     */
-    public void setPrecoTotalVenda(float precoTotalVenda) {
-        this.precoTotalVenda = precoTotalVenda;
+    public int getidVenda()
+    {
+        return id_venda;
     }
     
-    public String getDataVenda() {
-        return dataVenda;
+    public void setidVenda(int _idVenda) {
+        this.id_venda = _idVenda;
+    }
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String _status) {
+        this.status = _status;
     }
     
-    public void setDataVenda(String dataVenda) {
-        this.dataVenda = dataVenda;
+    public double getValorTotal() {
+        return this.valor_total;
     }
-    
-    public void adicionaProdutoVendido(Produto produto){
-        produtosVendidos.add(produto);
+
+    public void setValorTotal(double _valor_total) {
+        this.valor_total = _valor_total;
     }
-    
-    public void removeProdutoVendido(Produto produto){
-        produtosVendidos.remove(produto);
+
+    /**
+     * @return the qtd_total
+     */
+    public int getQtd_total() {
+        return qtd_total;
     }
-    
+
+    /**
+     * @param qtd_total the qtd_total to set
+     */
+    public void setQtd_total(int qtd_total) {
+        this.qtd_total = qtd_total;
+    }
 }

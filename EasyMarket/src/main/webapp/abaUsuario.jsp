@@ -10,7 +10,15 @@
         <script src="js/jquery-1.8.2.js" type="text/javascript"></script>
         <script src="js/jquery-ui-1.10.3.custom.js" type="text/javascript"></script>
         <script src="js/jquery.jtable.js" type="text/javascript"></script>
+        <script src="js/jquery.js" type="text/javascript"></script>
         <script src="js/jquery.maskedinput.js" type="text/javascript"></script>
+        <!-- Import CSS file for validation engine (in Head section of HTML) -->
+        <link href="css/validationEngine.jquery.css" rel="stylesheet" type="text/css" />
+
+        <!-- Import Javascript files for validation engine (in Head section of HTML) -->
+        <script type="text/javascript" src="js/jquery.validationEngine.js"></script>
+        <script type="text/javascript" src="js/jquery.validationEngine-pt_BR"></script>
+
 
 
         <script type="text/javascript">
@@ -35,7 +43,8 @@
                         nome: {
                             title: 'Nome',
                             width: '30%',
-                            edit: true
+                            edit: true,
+                            inputClass: 'validate[required]'
                         },
                         login: {
                             title: 'Login',
@@ -73,11 +82,7 @@
                             edit: true
 
                         }
-                    },
-                    formCreated: function (event, data)
-                    {
-                        data.form.find('[name=cpf]').mask('999.999.999-99');
-                    }
+                    }   
 
                 });
                 $('#UserTable').jtable('load');
