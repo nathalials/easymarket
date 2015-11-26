@@ -76,7 +76,7 @@
                         precoCompra: {
                             title: 'Preço Compra',
                             width: '20%',
-                            list: false,
+                            list: true,
                             edit: false,
                             create: false
 
@@ -84,7 +84,7 @@
                         precoVenda: {
                             title: 'Preço Venda',
                             width: '20%',
-                            list: false,
+                            list: true,
                             edit: false,
                             create: false
 

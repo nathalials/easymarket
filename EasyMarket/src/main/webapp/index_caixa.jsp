@@ -26,7 +26,7 @@
             <div class="divsel">
                 <div id="registro" class="tab-pane fade in active">
                     <body class="abaFrame">
-                        <iframe src="abaRegistroVendas.jsp" frameborder="0"></iframe>
+                        <iframe src="registroVendas.jsp" frameborder="0"></iframe>
                     </body>
                 </div>
             </div>

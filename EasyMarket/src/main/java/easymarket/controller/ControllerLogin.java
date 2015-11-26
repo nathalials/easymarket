@@ -70,7 +70,7 @@ public class ControllerLogin extends HttpServlet {
                 response.sendRedirect("indexBackOffice.jsp");
 
             } else if (cargo.equalsIgnoreCase("C")) {
-                response.sendRedirect("registroVendas.jsp");
+                response.sendRedirect("index_caixa.jsp");
             }
 
         } else {

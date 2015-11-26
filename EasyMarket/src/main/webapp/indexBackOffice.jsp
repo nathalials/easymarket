@@ -23,9 +23,10 @@
             <br>
             <br>
             <ul class="nav nav-tabs nav-justified">
+                <li><a data-toggle="tab" href="#filial">Filial</a></li>
                 <li class="active"><a data-toggle="tab" href="#produto">Produto</a></li>
-                <li><a data-toggle="tab" href="#estoque">Estoque</a></li>
-                <li><a data-toggle="tab" href="#vendas">Vendas</a></li>
+                
+<!--                <li><a data-toggle="tab" href="#vendas">Vendas</a></li>-->
             </ul>
             <div class="divsel">
                 <div class="tab-content">
@@ -34,16 +35,16 @@
                             <iframe src="abaProduto.jsp" frameborder="0"></iframe>
                         </body>
                     </div>
-                    <div id="estoque" class="tab-pane fade">
+                    <div id="filial" class="tab-pane fade">
                         <body class="abaFrame">
-                            <iframe src="abaEstoque.jsp" frameborder="0"></iframe>
+                            <iframe src="abaFilial.jsp" frameborder="0"></iframe>
                         </body>
                     </div>
                     <div id="vendas" class="tab-pane fade">
-                        <body class="abaFrame">
+<!--                        <body class="abaFrame">
                             <iframe src="abaVendas.jsp" frameborder="0"></iframe>
                         </body>
-                    </div>
+                    </div>-->
                 </div>
             </div>
         </div>

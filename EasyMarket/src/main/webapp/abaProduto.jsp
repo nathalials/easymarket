@@ -82,14 +82,14 @@
                             title: 'Estq Min',
                             width: '20%',
                             edit: true,
-                            list: true
+                            list: false
 
                         },
                         estoqueMaximo: {
                             title: 'Estq Max',
                             width: '20%',
                             edit: true,
-                            list: true
+                            list: false
 
                         },
                         qtdAtual: {

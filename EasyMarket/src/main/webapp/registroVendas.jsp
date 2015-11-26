@@ -72,11 +72,7 @@
             })
 
             function validateForm() {
-                var x = document.forms["form_consultaProduto"]["codigoDeBarras"].value;
-                if (x == null || x == "" || x < 0) {
-                    alert("Favor preencher um código de barras");
-                    return false;
-                }
+
                 var y = document.forms["form_consultaProduto"]["qtdVendida"].value;
                 if (y == null || y < 0) {
                     alert("Favor preencher uma quantidade válida");
@@ -84,7 +80,7 @@
                 }
             }
 
-       
+
 
         </script>
 
@@ -113,7 +109,7 @@
                 <br><label class="dadosRegistro">Preço Total:</label><br>
                 <input type="text" disabled="disabled" id="result" name="precoTotal">
                 <input type="submit" value="REGISTRAR" id="botaoAdicionar" onclick="javascript: form.action = 'ConsultaProduto?action=add';"/>
-              
+
 
             </form>
         </div>

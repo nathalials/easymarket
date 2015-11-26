@@ -130,7 +130,11 @@ public class ConsultaProduto extends HttpServlet {
                     response.getWriter().print(jsonArray);
                 } else if (action.equalsIgnoreCase("save")) {
 
-                    codDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
+                     codDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
+                     if (codDeBarras < 0) 
+                    {
+                        throw new erroValidacao("Informe um código de barras válido");
+                    }
 
                     try {
                         produto = dao.buscarProduto(codDeBarras);
@@ -152,10 +156,15 @@ public class ConsultaProduto extends HttpServlet {
 
                     //request.setAttribute("users", dao.getAllUsers());
                 } else if (action.equals("add")) {
+                    
+                    
+                    
+                    
 
                     String status = "F";
 
                     int qtdVendida = Integer.parseInt(request.getParameter("qtdVendida"));
+                    
                     codDeBarras = produto.getCodigoDeBarras();
                    
                     //float totalProduto = qtdVendida * produto.getPrecoVenda();

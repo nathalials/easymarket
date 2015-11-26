@@ -24,8 +24,8 @@
                 <li class="active"><a data-toggle="tab" href="#usuario">Usuário</a></li>
                 <li><a data-toggle="tab" href="#filial">Filial</a></li>
                 <li><a data-toggle="tab" href="#produto">Produto</a></li>
-                <li><a data-toggle="tab" href="#estoque">Estoque</a></li>
-                <li><a data-toggle="tab" href="#vendas">Vendas</a></li>
+                <li><a data-toggle="tab" href="#estoque">Relatório Estoque</a></li>
+<!--                <li><a data-toggle="tab" href="#vendas">Vendas</a></li>-->
                 <li><a data-toggle="tab" href="#registro">Registrar Venda</a></li>
             </ul>
 
@@ -52,11 +52,11 @@
                             <iframe src="abaEstoque.jsp" frameborder="0"></iframe>
                         </body>
                     </div>
-                    <div id="vendas" class="tab-pane fade">
+<!--                    <div id="vendas" class="tab-pane fade">
                         <body class="abaFrame">
                             <iframe src="abaVendas.jsp" frameborder="0"></iframe>
                         </body>
-                    </div>
+                    </div>-->
                     <div id="registro" class="tab-pane fade">
                         <body class="abaFrame">
                             <iframe src="registroVendas.jsp" frameborder="0"></iframe>

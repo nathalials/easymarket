@@ -101,11 +101,11 @@
 
     </head>
     <body>
-        <div class="filtering">
+<!--        <div class="filtering">
             <form>
                 Nome: <input type="text" name="nome" id="nome" />   
                 <button type="submit" id="LoadRecordsButton">Buscar</button>
-            </form>
+            </form>-->
         </div>
         <div id="UserTable"></div>
     </body>
