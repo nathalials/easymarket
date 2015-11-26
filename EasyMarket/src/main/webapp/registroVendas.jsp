@@ -98,17 +98,17 @@
                 <br><label class="dadosRegistro">Preço Total:</label><br>
                 <input type="text" disabled="disabled" id="result" name="precoTotal">
                 <input type="submit" value="+" id="botaoAdicionar" onclick="javascript: form.action = 'ConsultaProduto?action=add';"/>
+                <input type="submit" value="FECHAR VENDA" id="botaoFecharVenda" onclick="javascript: form.action = 'ConsultaProduto?action=fecharVenda  ';"/>
 
             </form>
         </div>
 
 
-        <input type="submit" value="FECHAR VENDA" id="botaoFecharVenda" onclick="javascript: form.action = 'ConsultaProduto?action=fecharVenda  ';"/>
-
+<!--
         <div id="tabela" class="tabelaProdutos">
 
             <iframe src="produtoVendidoTable.jsp" frameborder="0" style="top: 30%; left: 50%; width: 50%; height: 40%;"></iframe>
 
-        </div>
+        </div>-->
     </body>
 </html>

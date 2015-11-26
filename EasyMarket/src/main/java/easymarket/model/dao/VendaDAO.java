@@ -225,17 +225,19 @@ public class VendaDAO extends DAO {
         Produto produto = new Produto();
         ProdutoDAO produtoDao = new ProdutoDAO();
         produto = produtoDao.buscarProduto(codBarras);
+        int qtdAtual = produto.getQtdAtual();
+        qtdAtual = qtdAtual - qtdVendida;
         int idProduto = produto.getIdProduto();
         
         PreparedStatement stmt = null;
         Connection conn = null;
 
-        String sql = "UPDATE TB_PRODUTO SET QTD_ATUAL=? WHERE ID_PRODUTO=?";
+        String sql = "UPDATE TB_PRODUTO SET QTDATUAL=? WHERE ID_PRODUTO=?";
         try {
             conn = obterConexao();
             stmt = conn.prepareStatement(sql);
             stmt = conn.prepareStatement(sql);
-            stmt.setInt(1, qtdVendida);
+            stmt.setInt(1, qtdAtual);
             stmt.setInt(2, idProduto);
 
             stmt.executeUpdate();

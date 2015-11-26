@@ -151,11 +151,12 @@ public class ConsultaProduto extends HttpServlet {
                     forward = "registroVendas.jsp";
 
                     //request.setAttribute("users", dao.getAllUsers());
-                } else if (action.equalsIgnoreCase("add")) {
+                } else if (action.equals("add")) {
 
                     String status = "F";
 
                     int qtdVendida = Integer.parseInt(request.getParameter("qtdVendida"));
+                    codDeBarras = produto.getCodigoDeBarras();
                    
                     //float totalProduto = qtdVendida * produto.getPrecoVenda();
                     //result
@@ -175,17 +176,20 @@ public class ConsultaProduto extends HttpServlet {
                     novoVenda.incluirVendaProduto(venda_produtos);
                     qtdTotalProdutos = qtdTotalProdutos + venda_produtos.getQtd_vendida();
                     valorTotalVenda = (float) (valorTotalVenda + venda_produtos.getValor_venda());
+                    
+                    novoVenda.BaixaEstoque(qtdTotalProdutos, codDeBarras);
 
                     forward = "registroVendas.jsp";
 
-                } else if (action.equalsIgnoreCase("fecharVenda")) {
-
-                    novoVenda.AlterarVenda(valorTotalVenda, qtdTotalProdutos, venda.getidVenda());
-                     novoVenda.BaixaEstoque(qtdTotalProdutos, codDeBarras);
-
-                    forward = "registroVendas.jsp";
-
-                }
+                } 
+//                if (action.equalsIgnoreCase("fecharVenda")) {
+//
+//                    novoVenda.AlterarVenda(valorTotalVenda, qtdTotalProdutos, venda.getidVenda());
+//                     //novoVenda.BaixaEstoque(qtdTotalProdutos, codDeBarras);
+//
+//                    forward = "registroVendas.jsp";
+//
+//                }
 
                 RequestDispatcher view = request.getRequestDispatcher(forward);
                 view.forward(request, response);
