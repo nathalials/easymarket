@@ -11,9 +11,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     </head>
-
     <body>
-
         <div id="aba"> 
             <label id="logo_easymarket">EasyMarket</label>
             <img id="img_carrinho" src="css/images/product20-512.png"></img>
@@ -25,14 +23,13 @@
             <ul class="nav nav-tabs nav-justified">
                 <li class="active"><a data-toggle="tab" href="#registro">Registrar Venda</a></li>
             </ul>
-
             <div class="divsel">
-                    <div id="registro" class="tab-pane fade in active">
-                        <body class="abaFrame">
-                            <iframe src="abaRegistroVendas.jsp" frameborder="0"></iframe>
-                        </body>
-                    </div>
+                <div id="registro" class="tab-pane fade in active">
+                    <body class="abaFrame">
+                        <iframe src="abaRegistroVendas.jsp" frameborder="0"></iframe>
+                    </body>
                 </div>
             </div>
         </div>
+    </div>
 </html>

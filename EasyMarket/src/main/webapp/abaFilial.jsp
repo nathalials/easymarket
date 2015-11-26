@@ -90,9 +90,6 @@
 
     </head>
     <body>
-        <div style="width: 100%; text-align: center; height: 100%;">
-
-            <div id="FilialTable"></div>
-        </div>
+        <div id="FilialTable"></div>
     </body>
 </html>

@@ -70,7 +70,7 @@ public class ControllerUsuario extends HttpServlet {
                     String login = request.getParameter("login");
                     String senha = request.getParameter("senha");
                     String email = request.getParameter("email");
-                    String cpf = request.getParameter("cpf");
+                    String cpf = request.getParameter("cpf").replace(".", "").replace("-", "");
                     String cargo = request.getParameter("cargo");
                     String ativo = request.getParameter("ativo");
 

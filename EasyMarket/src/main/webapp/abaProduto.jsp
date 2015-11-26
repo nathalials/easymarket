@@ -68,28 +68,28 @@
                             title: 'Preço Compra',
                             width: '20%',
                             edit: true,
-                            list:false
+                            list: false
 
                         },
                         precoVenda: {
                             title: 'Preço Venda',
                             width: '20%',
                             edit: true,
-                            list:false
+                            list: false
 
                         },
                         estoqueMinimo: {
                             title: 'Estq Min',
                             width: '20%',
                             edit: true,
-                            list:false
+                            list: false
 
                         },
                         estoqueMaximo: {
                             title: 'Estq Max',
                             width: '20%',
                             edit: true,
-                            list:false
+                            list: false
 
                         },
                         qtdAtual: {
@@ -109,7 +109,7 @@
 
 
                     }
-         
+
                 });
                 $('#ProdutoTable').jtable('load');
             });
@@ -117,9 +117,6 @@
 
     </head>
     <body>
-        <div style="width: 100%; text-align: center; height: 100%;">
-
-            <div id="ProdutoTable"></div>
-        </div>
+        <div id="ProdutoTable"></div>
     </body>
 </html>

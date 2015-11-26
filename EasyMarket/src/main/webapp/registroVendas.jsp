@@ -59,24 +59,19 @@
                             edit: false,
                             create: false
                         }
-
-
                     }
-
                 });
                 $('#ProdutoVendidoTable').jtable('load');
             });
-
             $(document).ready(function () {
-                $(".input").keyup(function () {
-                    var val1 = +$(".value1").val();
-                    var val2 = +$(".value2").val();
-                    $("#result").val(val1 * val2);
-                });
+                var val1 = +$(".value1").val();
+                var val2 = +$(".value2").val();
+                $("#result").val(val1 * val2);
             });
-        </script>
+            });            </script>
 
     </head>
+
 
     <body style="background-color:#EBEBEB;">
 
@@ -104,9 +99,9 @@
         <input type="submit" value="FECHAR VENDA" id="botaoFecharVenda" onclick="javascript: form.action = 'ConsultaProduto?action=fecharVenda';"/>
 
         <div id="tabela" class="tabelaProdutos">
-            
+
             <iframe src="produtoVendidoTable.jsp" frameborder="0" style="top: 30%; left: 50%; width: 50%; height: 40%;"></iframe>
-           
+
         </div>
     </body>
 </html>
