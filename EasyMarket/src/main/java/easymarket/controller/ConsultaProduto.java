@@ -113,6 +113,7 @@ public class ConsultaProduto extends HttpServlet {
         String action = request.getParameter("action");
         int qtdTotalProdutos = 0;
         float valorTotalVenda = 0;
+        long codDeBarras = 0;
 
         if (action != null) {
             try {
@@ -129,7 +130,7 @@ public class ConsultaProduto extends HttpServlet {
                     response.getWriter().print(jsonArray);
                 } else if (action.equalsIgnoreCase("save")) {
 
-                    long codDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
+                    codDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
 
                     try {
                         produto = dao.buscarProduto(codDeBarras);
@@ -155,6 +156,7 @@ public class ConsultaProduto extends HttpServlet {
                     String status = "F";
 
                     int qtdVendida = Integer.parseInt(request.getParameter("qtdVendida"));
+                   
                     //float totalProduto = qtdVendida * produto.getPrecoVenda();
                     //result
                     float precoVendaProduto = produto.getPrecoVenda();
@@ -179,6 +181,8 @@ public class ConsultaProduto extends HttpServlet {
                 } else if (action.equalsIgnoreCase("fecharVenda")) {
 
                     novoVenda.AlterarVenda(valorTotalVenda, qtdTotalProdutos, venda.getidVenda());
+                     novoVenda.BaixaEstoque(qtdTotalProdutos, codDeBarras);
+
                     forward = "registroVendas.jsp";
 
                 }

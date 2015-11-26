@@ -64,13 +64,20 @@
                 $('#ProdutoVendidoTable').jtable('load');
             });
             $(document).ready(function () {
-                var val1 = +$(".value1").val();
-                var val2 = +$(".value2").val();
-                $("#result").val(val1 * val2);
-            });
-            });            </script>
+                $(".input").keyup(function () {
+                    var val1 = +$(".value1").val();
+                    var val2 = +$(".value2").val();
+                    $("#result").val(val1 + val2);
+                });
+            })
+
+        </script>
 
     </head>
+
+
+
+
 
 
     <body style="background-color:#EBEBEB;">
@@ -96,7 +103,7 @@
         </div>
 
 
-        <input type="submit" value="FECHAR VENDA" id="botaoFecharVenda" onclick="javascript: form.action = 'ConsultaProduto?action=fecharVenda';"/>
+        <input type="submit" value="FECHAR VENDA" id="botaoFecharVenda" onclick="javascript: form.action = 'ConsultaProduto?action=fecharVenda  ';"/>
 
         <div id="tabela" class="tabelaProdutos">
 

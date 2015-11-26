@@ -5,6 +5,7 @@
  */
 package easymarket.model.dao;
 
+import easymarket.model.pojo.Produto;
 import easymarket.model.pojo.Usuario;
 import easymarket.model.pojo.Venda;
 import easymarket.model.pojo.Venda_Produtos;
@@ -218,6 +219,48 @@ public class VendaDAO extends DAO {
         rs.close();
         stmt.close();
         return produtosVendidos;
+    }
+    
+    public void BaixaEstoque(int qtdVendida, long codBarras) throws SQLException {
+        Produto produto = new Produto();
+        ProdutoDAO produtoDao = new ProdutoDAO();
+        produto = produtoDao.buscarProduto(codBarras);
+        int idProduto = produto.getIdProduto();
+        
+        PreparedStatement stmt = null;
+        Connection conn = null;
+
+        String sql = "UPDATE TB_PRODUTO SET QTD_ATUAL=? WHERE ID_PRODUTO=?";
+        try {
+            conn = obterConexao();
+            stmt = conn.prepareStatement(sql);
+            stmt = conn.prepareStatement(sql);
+            stmt.setInt(1, qtdVendida);
+            stmt.setInt(2, idProduto);
+
+            stmt.executeUpdate();
+            System.out.println("Registro incluido com sucesso.");
+
+        } catch (SQLException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            if (stmt != null) {
+                try {
+                    stmt.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            if (conn != null) {
+                try {
+                    conn.close();
+                } catch (SQLException ex) {
+                    Logger.getLogger(VendaDAO.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+        }
     }
 
 }
