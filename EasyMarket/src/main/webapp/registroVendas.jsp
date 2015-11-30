@@ -67,7 +67,7 @@
                 $(".input").keyup(function () {
                     var val1 = +$(".value1").val();
                     var val2 = +$(".value2").val();
-                    $("#result").val(val1 + val2);
+                    $("#result").val(val1 * val2);
                 });
             })
 
@@ -91,7 +91,7 @@
 
 
 
-    <body style="background-color:#EBEBEB;">
+    <body id="bodyRegistraVenda">
 
 
         <div class="compraProduto">
@@ -101,7 +101,7 @@
                 <input type="text" name="codigoDeBarras" class="campo" />
                 <input type="submit" value="Buscar" id="botaoBuscar" onclick="javascript: form.action = 'ConsultaProduto?action=save';"/><br>
                 <label  class="dadosRegistro" for="nome">Nome:</label> <br>
-                <input value='<%=request.getAttribute("nome")%>' type="text" name="nome" readonly="readonly" />
+                <input value='<%=request.getAttribute("nome")%>' type="text" name="nome" readonly="readonly" placeholder="Nome" />
                 <br><label class="dadosRegistro">Quantidade:</label><br>
                 <input type="text" class="input value1" name="qtdVendida"><br>
                 <label  class="dadosRegistro" for="precoVenda">Preço Unitário:</label> <br> 
@@ -115,11 +115,5 @@
         </div>
 
 
-        <!--
-                <div id="tabela" class="tabelaProdutos">
-        
-                    <iframe src="produtoVendidoTable.jsp" frameborder="0" style="top: 30%; left: 50%; width: 50%; height: 40%;"></iframe>
-        
-                </div>-->
     </body>
 </html>

@@ -1,4 +1,4 @@
-<!--
+
 body{
     width: 100%;
     margin:auto;
@@ -70,8 +70,14 @@ iframe {
     
 }
 
+.compraProduto{
+    position:fixed; 
+    left:3%;
+}
+
 .compraProdutoHtml{
     background-color: #033076;
+    
 }
 
 
@@ -218,4 +224,7 @@ iframe {
     font-family: inherit;
     font-weight:bold;
 }
--->
+
+#bodyRegistraVenda{
+    background-color:#EBEBEB;
+}

@@ -131,10 +131,7 @@ public class ConsultaProduto extends HttpServlet {
                 } else if (action.equalsIgnoreCase("save")) {
 
                      codDeBarras = Long.parseLong(request.getParameter("codigoDeBarras"));
-                     if (codDeBarras < 0) 
-                    {
-                        throw new erroValidacao("Informe um código de barras válido");
-                    }
+                 
 
                     try {
                         produto = dao.buscarProduto(codDeBarras);
